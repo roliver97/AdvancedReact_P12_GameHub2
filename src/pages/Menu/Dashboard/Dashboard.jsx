@@ -10,7 +10,7 @@ const Dashboard = () => {
   )
   const totalScore = gamesStats.reduce((acc, game) => acc + game.score, 0)
   return (
-    <section className='dashboard main-child'>
+    <section className='dashboard main-child custom-scrollbar'>
       <div className='dashboard-header'>
         <h1>Hey {nickname},</h1>
         <p>

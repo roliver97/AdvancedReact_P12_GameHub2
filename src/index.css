@@ -181,14 +181,20 @@ input {
 
 .custom-scrollbar::-webkit-scrollbar,
 .custom-scrollbar-inverted::-webkit-scrollbar {
-  width: 8px;
-  height: 8px; /* Per si algun cop tens scroll horitzontal */
+  width: 13px;
+  height: 13px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-track,
 .custom-scrollbar-inverted::-webkit-scrollbar-track {
   background: transparent;
   margin: var(--gh-space-s);
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb,
+.custom-scrollbar-inverted::-webkit-scrollbar-thumb {
+  border: 5px solid transparent;
+  background-clip: padding-box;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
