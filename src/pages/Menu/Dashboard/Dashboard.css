@@ -1,0 +1,119 @@
+.dashboard {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gh-space-xl);
+}
+
+.dashboard-header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gh-space-l);
+  padding-bottom: var(--gh-space-xl);
+  border-bottom: 3px solid var(--gh-color-4);
+}
+
+.dashboard-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gh-space-xl);
+  flex: 1;
+}
+
+.dashboard-markers {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--gh-space-l);
+  padding-bottom: var(--gh-space-xl);
+}
+
+.dashboard-games-marker,
+.dashboard-score-marker {
+  display: flex;
+  border: 2px solid var(--gh-color-5);
+  padding: var(--gh-space-l);
+  border-radius: var(--gh-radius-l);
+  flex: 1;
+  gap: var(--gh-space-l);
+  align-items: center;
+}
+
+.dashboard-marker-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gh-space-s);
+}
+
+.dashboard-marker-info span {
+  color: var(--gh-accent);
+}
+
+.dashboard-icon,
+.recent-card-icon {
+  width: 60px;
+  background-color: var(--gh-color-4);
+  border-radius: var(--gh-radius-l);
+  padding: var(--gh-space-s);
+}
+.recent-card-icon {
+  background-color: var(--gh-color-5);
+}
+
+.dashboard-recents {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+
+  border: 3px solid var(--gh-color-5);
+  border-radius: var(--gh-radius-l);
+}
+
+.dashboard-recents-title {
+  border-bottom: 2px solid var(--gh-color-5);
+  padding: var(--gh-space-m);
+}
+
+.dashboard-recent-cards {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gh-space-l);
+  flex: 1;
+
+  overflow-y: auto;
+
+  padding: var(--gh-space-m);
+  margin-right: var(--gh-space-m);
+}
+
+.dashboard-recent-cards.custom-scrollbar::-webkit-scrollbar-track {
+  margin: var(--gh-space-m);
+}
+
+.recent-card {
+  background-color: var(--gh-color-4);
+  display: flex;
+  gap: var(--gh-space-l);
+  align-items: center;
+  padding: var(--gh-space-m);
+  border-radius: var(--gh-radius-l);
+}
+
+.recent-card-info,
+.recent-card-points {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: var(--gh-space-m);
+}
+
+.recent-card-game,
+.recent-card-date {
+  font-size: 1rem;
+}
+
+.recent-card-points {
+  text-align: end;
+  font-weight: 600;
+  color: var(--gh-accent);
+}

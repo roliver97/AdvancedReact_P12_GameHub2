@@ -1,0 +1,262 @@
+@import url('https://fonts.googleapis.com/css2?family=Asimovian&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+  /* FONT FAMILY */
+  --font-sans:
+    'Montserrat', 'Roboto', ui-sans-serif, system-ui, sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+
+  /* BRANDING COLORS */
+  --gh-color-1: #f8fafc;
+  --gh-color-2: #94a3b8;
+  --gh-color-3: #1a0e1d;
+  --gh-color-4: #523958;
+  --gh-color-5: #977d9e;
+  --gh-color-6: #fc5f43;
+  --gh-color-7: #f7a697;
+
+  /* CORE COLORS ASSIGNATION */
+  --gh-bg-main: var(--gh-color-3);
+  --gh-bg-sidebar: var(--gh-color-4);
+  --gh-border: var(--gh-color-5);
+  --gh-accent: var(--gh-color-6);
+  --gh-accent-hover: var(--gh-color-7);
+
+  /* TEXT COLORS ASSIGNATION*/
+  --gh-text-main: var(--gh-color-1);
+  --gh-text-muted: var(--gh-color-2);
+
+  /* BORDER RADIUS */
+  --gh-radius-s: 4px;
+  --gh-radius-m: 8px;
+  --gh-radius-l: 16px;
+  --gh-radius-circle: 50%;
+
+  /* SPACINGS */
+  --gh-space-xs: 4px;
+  --gh-space-s: 8px;
+  --gh-space-m: 16px;
+  --gh-space-l: 24px;
+  --gh-space-xl: 40px;
+  --gh-space-xxl: 64px;
+
+  /* BUTTONS & INPUTS PADDING */
+  --gh-btn-padding-xs: var(--gh-space-xs) var(--gh-space-s);
+  --gh-btn-padding-s: var(--gh-space-s) var(--gh-space-m);
+  --gh-btn-padding-m: var(--gh-space-m) var(--gh-space-l);
+  --gh-btn-padding-l: var(--gh-space-l) var(--gh-space-xl);
+  --gh-btn-padding-xl: var(--gh-space-xl) var(--gh-space-xxl);
+
+  /* OVERLAYS */
+  --gh-overlay: rgba(15, 23, 42, 0.75);
+}
+
+/* CONFIGURACIONES GENERALES*/
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px; /* 1rem = 16px */
+}
+
+input,
+textarea,
+select {
+  font-size: 1rem; /* iOS fuerza un zoom automático si algun input tiene un font-size inferior a 16px */
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--gh-bg-main);
+  color: var(--gh-text-main);
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+p,
+label,
+button,
+a {
+  font-size: 1rem;
+  font-family: var(--font-sans);
+}
+
+button,
+a {
+  cursor: pointer;
+}
+
+h1 {
+  font-size: 1.5rem;
+}
+
+h2 {
+  font-size: 1.4rem;
+}
+
+h3 {
+  font-size: 1.25rem;
+}
+
+h4 {
+  font-size: 1.1rem;
+}
+
+h5,
+h6 {
+  font-size: 1rem;
+}
+
+p,
+label,
+button,
+a,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--gh-text-main);
+}
+
+ul,
+ol,
+a {
+  list-style: none;
+  text-decoration: none;
+}
+
+input {
+  font-family: var(--font-sans);
+}
+
+/* CONFIGURACIONES ESPECÍFICAS*/
+
+.hidden {
+  display: none;
+}
+
+.active {
+  display: block;
+}
+
+.wrapper {
+  width: 100%;
+  max-width: 70%;
+  margin: 0 auto;
+  display: flex;
+}
+
+.flex-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.is-blurred {
+  filter: blur(8px);
+  pointer-events: none;
+  user-select: none;
+}
+
+.is-blurred-dark {
+  filter: blur(2px);
+  pointer-events: none;
+  user-select: none;
+}
+
+.hide-on-mobile {
+  display: flex;
+}
+.show-on-mobile {
+  display: none;
+}
+
+.custom-scrollbar::-webkit-scrollbar,
+.custom-scrollbar-inverted::-webkit-scrollbar {
+  width: 8px;
+  height: 8px; /* Per si algun cop tens scroll horitzontal */
+}
+
+.custom-scrollbar::-webkit-scrollbar-track,
+.custom-scrollbar-inverted::-webkit-scrollbar-track {
+  background: transparent;
+  margin: var(--gh-space-s);
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: var(--gh-color-4);
+  border-radius: var(--gh-radius-l);
+  cursor: pointer;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: var(--gh-color-5);
+}
+
+.custom-scrollbar-inverted::-webkit-scrollbar-thumb {
+  background-color: var(--gh-color-5);
+  border-radius: var(--gh-radius-l);
+  cursor: pointer;
+}
+
+.custom-scrollbar-inverted::-webkit-scrollbar-thumb:hover {
+  background-color: var(--gh-color-4);
+}
+
+/*! MEDIA QUERIES */
+@media (max-width: 1800px) {
+  /* DESKTOP or less */
+  .wrapper {
+    width: 100%;
+    max-width: 80%;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 1024px) {
+  /* LAPTOP - TABLET or less */
+  .wrapper {
+    width: 100%;
+    max-width: 85%;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 769px) {
+  /* SMALL TABLET or less */
+  .wrapper {
+    width: 100%;
+    max-width: 90%;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 480px) {
+  /* MOBILE or less */
+  html {
+    font-size: 14px; /* 1rem = 16px */
+  }
+  input,
+  textarea,
+  select {
+    font-size: 16px; /* mantenemos 16px para los inputs ya que iOS fuerza un zoom automático si algun input tiene un font-size inferior a 16px */
+  }
+  .wrapper {
+    max-width: 100%;
+    padding: 0 15px;
+  }
+  .hide-on-mobile {
+    display: none !important;
+  }
+  .show-on-mobile {
+    display: flex !important;
+  }
+}
