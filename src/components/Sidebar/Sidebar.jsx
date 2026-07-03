@@ -4,7 +4,7 @@ import { useUserContext } from '../../hooks/useUserContext'
 import { NavLink } from 'react-router-dom'
 
 const Sidebar = ({ isOpen, toggleSidebar }) => {
-  const { nickname } = useUserContext()
+  const { playerInfo } = useUserContext()
   console.log('Soy Sidebar y me renderizo')
 
   return (
@@ -25,7 +25,8 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
           <h1 className='sidebar-title'>GameHub²</h1>
         </div>
         <h4 className='sidebar-welcome'>
-          Welcome, <span className='sidebar-nickname'>{nickname}</span> !
+          Welcome,{' '}
+          <span className='sidebar-nickname'>{playerInfo.nickname}</span> !
         </h4>
       </header>
 

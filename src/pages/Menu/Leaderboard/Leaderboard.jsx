@@ -4,7 +4,7 @@ import { useUserContext } from '../../../hooks/useUserContext'
 import LeaderboardCard from './components/LeaderboardCard'
 
 const Leaderboard = () => {
-  const { nickname, gamesStats, recents } = useUserContext()
+  const { playerInfo, gamesStats, recents } = useUserContext()
   const orderedGames = [...gamesStats].sort((a, b) => b.score - a.score)
 
   return (
@@ -34,7 +34,7 @@ const Leaderboard = () => {
 
             return (
               <LeaderboardCard
-                nickname={nickname}
+                nickname={playerInfo.nickname}
                 key={game.id}
                 game={game}
                 leaderboardPosition={

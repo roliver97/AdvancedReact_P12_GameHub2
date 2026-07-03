@@ -42,8 +42,8 @@
 }
 
 .leaderboard-grid-title {
-  color: var(--gh-color-5);
-  text-shadow: 0px 0px 2px black;
+  color: var(--gh-color-1);
+  text-shadow: 0px 0px 3px black;
 }
 
 .leaderboard-grid-cards {

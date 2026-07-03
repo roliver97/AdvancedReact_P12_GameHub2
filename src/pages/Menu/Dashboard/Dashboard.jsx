@@ -3,7 +3,7 @@ import './Dashboard.css'
 import { useUserContext } from '../../../hooks/useUserContext'
 
 const Dashboard = () => {
-  const { nickname, gamesStats, recents } = useUserContext()
+  const { playerInfo, gamesStats, recents } = useUserContext()
   const totalGamesPlayed = gamesStats.reduce(
     (acc, game) => acc + game.played,
     0
@@ -12,7 +12,7 @@ const Dashboard = () => {
   return (
     <section className='dashboard main-child custom-scrollbar'>
       <div className='dashboard-header'>
-        <h1>Hey {nickname},</h1>
+        <h1>Hey {playerInfo.nickname},</h1>
         <p>
           Your personal arcade room is ready. Choose your favorite game from the
           menu and start breaking records

@@ -78,9 +78,9 @@
 .dashboard-recents-title {
   border-bottom: 2px solid var(--gh-color-5);
   padding: var(--gh-space-m);
-  color: var(--gh-color-5);
+  color: var(--gh-color-1);
+  text-shadow: 0px 0px 3px black;
   background-color: var(--gh-color-4);
-  text-shadow: 0px 0px 2px black;
 }
 
 .dashboard-recent-cards {

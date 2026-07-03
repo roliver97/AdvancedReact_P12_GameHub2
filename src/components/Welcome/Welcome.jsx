@@ -3,7 +3,7 @@ import './Welcome.css'
 import { useUserContext } from '../../hooks/useUserContext'
 
 const Welcome = () => {
-  const { setNickname } = useUserContext()
+  const { setPlayerInfo } = useUserContext()
   const inputRef = useRef(null)
   const [showSplash, setShowSplash] = useState(true)
 
@@ -18,7 +18,10 @@ const Welcome = () => {
     e.preventDefault()
     const inputSubmited = inputRef.current.value
     if (inputSubmited.trim() !== '') {
-      setNickname(inputSubmited)
+      setPlayerInfo((prev) => ({
+        ...prev,
+        nickname: inputSubmited.trim()
+      }))
     }
   }
 

@@ -10,11 +10,11 @@ import Leaderboard from './pages/Menu/Leaderboard/Leaderboard'
 import Profile from './pages/Menu/Profile/Profile'
 
 const App = () => {
-  const { nickname } = useUserContext()
+  const { playerInfo } = useUserContext()
   const [isSidebarOpen, setIsSidebarOpen] = useState(true)
   console.log('Soy App y me renderizo')
 
-  if (!nickname) return <Welcome />
+  if (!playerInfo.nickname) return <Welcome />
 
   return (
     <>

@@ -4,7 +4,11 @@ import { createContext, useState } from 'react'
 export const UserContext = createContext()
 
 export const UserProvider = ({ children }) => {
-  const [nickname, setNickname] = useState('')
+  const [playerInfo, setPlayerInfo] = useState({
+    nickname: '',
+    joinDate: new Date().toLocaleDateString()
+  })
+
   const [gamesStats, setGamesStats] = useState([
     {
       id: 'tictactoe',
@@ -72,8 +76,8 @@ export const UserProvider = ({ children }) => {
   return (
     <UserContext.Provider
       value={{
-        nickname,
-        setNickname,
+        playerInfo,
+        setPlayerInfo,
         gamesStats,
         setGamesStats,
         recents,
