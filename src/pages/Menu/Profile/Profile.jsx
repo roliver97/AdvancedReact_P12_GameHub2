@@ -16,9 +16,9 @@ const Profile = () => {
 
   const favoriteGame =
     totalGamesPlayed > 0
-      ? gamesStats.reduce((prevGame, currentGame) => {
+      ? gamesStats.reduce((prevGame, currentGame) =>
           currentGame.played > prevGame.played ? currentGame : prevGame
-        }).name
+        ).name
       : 'Not played yet'
 
   return (
