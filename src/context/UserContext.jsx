@@ -16,7 +16,7 @@ export const UserProvider = ({ children }) => {
     {
       id: 'memory',
       name: 'Memory',
-      score: 0,
+      score: 10,
       played: 0,
       icon: '/assets/icons/sidebar/memory.png'
     },
@@ -24,6 +24,13 @@ export const UserProvider = ({ children }) => {
       id: 'rockpaperscissors',
       name: 'Rock Paper Scissors',
       score: 50,
+      played: 0,
+      icon: '/assets/icons/sidebar/rock_paper_scissors.png'
+    },
+    {
+      id: 'prueba',
+      name: 'Prueba',
+      score: 0,
       played: 0,
       icon: '/assets/icons/sidebar/rock_paper_scissors.png'
     }

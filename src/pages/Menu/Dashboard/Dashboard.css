@@ -72,11 +72,15 @@
 
   flex: 1;
   min-height: 195px;
+  overflow: hidden;
 }
 
 .dashboard-recents-title {
   border-bottom: 2px solid var(--gh-color-5);
   padding: var(--gh-space-m);
+  color: var(--gh-color-5);
+  background-color: var(--gh-color-4);
+  text-shadow: 0px 0px 2px black;
 }
 
 .dashboard-recent-cards {
