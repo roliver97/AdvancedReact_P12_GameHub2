@@ -29,7 +29,7 @@ export const GAMES_DATA = {
     name: 'Rock Paper Scissors',
     subtitle:
       'Outsmart your opponent in a classic hand-battle of strategy and prediction.',
-    icon: '/assets/icons/sidebar/rock-paper-scissors.png',
+    icon: '/assets/icons/sidebar/rock_paper_scissors.png',
     howToPlay: [
       'Both players choose one of three shapes simultaneously: Rock, Paper, or Scissors.',
       'Rock crushes Scissors (Rock wins).',

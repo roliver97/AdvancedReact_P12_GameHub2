@@ -16,7 +16,7 @@ const TicTacToe = () => {
     setCurrentPlayer('X')
   }
   const handleClick = (cellIndex) => {
-    if (!isGameActive || cells[cellIndex] !== null) return
+    if (cells[cellIndex] !== null) return
     if (!isGameActive) {
       setIsGameActive(true)
     }
@@ -29,12 +29,12 @@ const TicTacToe = () => {
 
   return (
     <GameBoard gameData={gameData} onReset={handleReset}>
-      <div className='tictactoe-grid'>
+      <div className={`tictactoe-grid current-${currentPlayer.toLowerCase()}`}>
         {cells.map((value, index) => (
           <button
-            className='tictactoe-cell'
             key={index}
             onClick={() => handleClick(index)}
+            className={`tictactoe-cell ${value !== null ? `${value.toLowerCase()}` : ''}`}
           >
             {value}
           </button>

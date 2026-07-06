@@ -14,6 +14,9 @@
   --gh-color-5: #977d9e;
   --gh-color-6: #fc5f43;
   --gh-color-7: #f7a697;
+  --gh-color-8: #578cff;
+  --gh-color-9: #ffe057;
+  --gh-color-10: #ff5757;
 
   /* CORE COLORS ASSIGNATION */
   --gh-bg-main: var(--gh-color-3);
@@ -21,6 +24,10 @@
   --gh-border: var(--gh-color-5);
   --gh-accent: var(--gh-color-6);
   --gh-accent-hover: var(--gh-color-7);
+
+  --gh-player-x-color: var(--gh-color-8);
+  --gh-draw-color: var(--gh-color-9);
+  --gh-player-o-color: var(--gh-color-10);
 
   /* TEXT COLORS ASSIGNATION*/
   --gh-text-main: var(--gh-color-1);

@@ -1,9 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './GameBoard.css'
 
 const GameBoard = ({ gameData, onReset, children }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false)
+
+  const openModal = () => setIsModalOpen(true)
+  const closeModal = () => setIsModalOpen(false)
+
   return (
-    <div className='game-layout'>
+    <div className='game-layout main-child custom-scrollbar'>
       <div className='game-header'>
         <div className='game-title-container'>
           <img className='game-icon' src={gameData.icon} />
@@ -12,24 +17,43 @@ const GameBoard = ({ gameData, onReset, children }) => {
         <p>{gameData.subtitle}</p>
       </div>
       <div className='game-board'>{children}</div>
+
       <div className='game-footer'>
         <div className='game-controls'>
           {' '}
           <button onClick={onReset} className='btn-reset-game'>
             Reset Game
           </button>
-        </div>
-        <div className='game-instructions'>
-          <h4>How To Play</h4>
-          <ol>
-            {gameData.howToPlay.map((value, index) => (
-              <li className='instruction-item' key={index}>
-                {value}
-              </li>
-            ))}
-          </ol>
+          <button onClick={openModal} className='btn-instructions-game'>
+            Show Instructions
+          </button>
         </div>
       </div>
+
+      {isModalOpen && (
+        <div className='modal-overlay' onClick={closeModal}>
+          <div className='modal-content' onClick={(e) => e.stopPropagation()}>
+            <div className='modal-header'>
+              <h4>How To Play {gameData.name} </h4>{' '}
+              <img
+                className='modal-header-icon'
+                src={gameData.icon}
+                alt={`${gameData.name} icon`}
+              />
+              <button className='btn-close-modal' onClick={closeModal}>
+                X
+              </button>
+            </div>
+            <ol className='modal-instructions-list'>
+              {gameData.howToPlay.map((value, index) => (
+                <li className='instruction-item' key={index}>
+                  {value}
+                </li>
+              ))}
+            </ol>
+          </div>
+        </div>
+      )}
     </div>
   )
 }
