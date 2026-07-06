@@ -1,39 +1,19 @@
+import { GAMES_DATA } from './gamesData'
+
 export const INITIAL_PLAYER_INFO = {
   nickname: '',
   joinDate: new Date().toLocaleDateString()
 }
 
-export const INITIAL_GAMES_STATS = [
-  {
-    id: 'tictactoe',
-    name: 'Tic Tac Toe',
-    score: 100,
-    played: 1,
-    icon: '/assets/icons/sidebar/tictactoe.svg'
-  },
-  {
-    id: 'memory',
-    name: 'Memory',
-    score: 1000,
-    played: 4,
-    icon: '/assets/icons/sidebar/memory.png'
-  },
-  {
-    id: 'rockpaperscissors',
-    name: 'Rock Paper Scissors',
-    score: 0,
-    played: 0,
-    icon: '/assets/icons/sidebar/rock_paper_scissors.png'
-  },
-  {
-    id: 'prueba',
-    name: 'Prueba',
-    score: 0,
-    played: 0,
-    icon: '/assets/icons/sidebar/rock_paper_scissors.png'
-  }
-]
+export const INITIAL_GAMES_STATS = Object.values(GAMES_DATA).map((game) => ({
+  id: game.id,
+  name: game.name,
+  score: 0,
+  played: 0,
+  icon: game.icon
+}))
 
+//! MOCK DATA: ARRAY INITIAL_RECENTS DE PRUEBA PARA DESARROLLO . VACIAR ANTES DEL DEPLOY
 export const INITIAL_RECENTS = [
   {
     gameId: 'tictactoe',

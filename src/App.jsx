@@ -8,6 +8,7 @@ import Welcome from './components/Welcome/Welcome'
 import Dashboard from './pages/Menu/Dashboard/Dashboard'
 import Leaderboard from './pages/Menu/Leaderboard/Leaderboard'
 import Profile from './pages/Menu/Profile/Profile'
+import TicTacToe from './pages/Games/TicTacToe/TicTacToe'
 
 const App = () => {
   const { playerInfo } = useUserContext()
@@ -40,6 +41,7 @@ const App = () => {
           <Route path='/' element={<Dashboard />} />
           <Route path='/leaderboard' element={<Leaderboard />} />
           <Route path='/profile' element={<Profile />} />
+          <Route path='/tictactoe' element={<TicTacToe />} />
         </Routes>
       </main>
     </>

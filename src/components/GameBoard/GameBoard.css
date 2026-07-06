@@ -1,0 +1,49 @@
+.game-layout {
+  width: 60%;
+
+  height: 100%;
+  padding: var(--gh-space-xxl);
+  display: flex;
+  flex-direction: column;
+  justify-self: center;
+
+  gap: var(--gh-space-m);
+}
+
+.game-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--gh-space-m);
+}
+
+.game-board {
+  flex: 4;
+}
+
+.game-title-container {
+  display: flex;
+  gap: var(--gh-space-m);
+}
+
+.game-icon {
+  width: 30px;
+  height: 30px;
+}
+
+.game-footer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gh-space-m);
+  align-items: center;
+}
+
+.game-instructions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gh-space-m);
+}
+
+.instruction-item {
+  list-style: circle;
+}
