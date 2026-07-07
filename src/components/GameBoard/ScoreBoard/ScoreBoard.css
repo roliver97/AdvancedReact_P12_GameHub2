@@ -1,0 +1,40 @@
+.game-score-board {
+  display: flex;
+  gap: var(--gh-space-l);
+}
+
+.score-card {
+  display: flex;
+  padding: var(--gh-space-s);
+  gap: var(--gh-space-s);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--gh-color-2);
+  border: 2px solid var(--gh-color-4);
+  flex: 1;
+  border-radius: var(--gh-radius-m);
+}
+
+.score-card .score-number {
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.score-card .score-label {
+  font-weight: 500;
+  font-size: 0.8rem;
+  color: var(--gh-color-5);
+}
+
+.score-card.x-wins .score-number {
+  color: var(--gh-player-x-color);
+}
+
+.score-card.o-wins .score-number {
+  color: var(--gh-player-o-color);
+}
+
+.score-card.draws .score-number {
+  color: var(--gh-draw-color);
+}

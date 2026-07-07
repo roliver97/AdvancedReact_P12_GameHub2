@@ -1,34 +1,67 @@
-import React, { useState } from 'react'
+import React from 'react'
 import './TicTacToe.css'
 import GameBoard from '../../../components/GameBoard/GameBoard'
 import { GAMES_DATA } from '../../../constants/gamesData'
+import useTicTacToe from '../../../hooks/useTicTacToe'
+import ScoreBoard from '../../../components/GameBoard/ScoreBoard/ScoreBoard'
+import StatusBanner from '../../../components/GameBoard/StatusBanner/StatusBanner'
 
 const TicTacToe = () => {
-  const [cells, setCells] = useState(Array(9).fill(null))
-  const [isGameActive, setIsGameActive] = useState(false)
-  const [currentPlayer, setCurrentPlayer] = useState('X')
-
   const gameData = GAMES_DATA.tictactoe
+  const {
+    cells,
+    currentPlayer,
+    winner,
+    scores,
+    handleClick,
+    handleReset,
+    handleResetScoreboard
+  } = useTicTacToe()
 
-  const handleReset = () => {
-    setCells(Array(9).fill(null))
-    setIsGameActive(false)
-    setCurrentPlayer('X')
-  }
-  const handleClick = (cellIndex) => {
-    if (cells[cellIndex] !== null) return
-    if (!isGameActive) {
-      setIsGameActive(true)
+  const scoreboardData = [
+    { label: 'X Wins', value: scores.xWins, className: 'x-wins' },
+    { label: 'Draws', value: scores.draws, className: 'draws' },
+    { label: 'O Wins', value: scores.oWins, className: 'o-wins' }
+  ]
+
+  //! Los archivos .jsx (React) nos permiten guardar código HTML directamente dentro de una variable
+  let statusContent = (
+    <>
+      Current Player:{' '}
+      <span className={`player-highlight ${currentPlayer.toLowerCase()}`}>
+        {currentPlayer}
+      </span>
+    </>
+  )
+  let bannerClass = `current-${currentPlayer.toLowerCase()}`
+
+  if (winner) {
+    if (winner === 'Tie') {
+      statusContent = <>It's a tie! 🤝</>
+      bannerClass = 'game-over tie'
+    } else {
+      statusContent = (
+        <>
+          Player
+          <span className={`player-highlight ${winner.toLowerCase()}`}>
+            {winner}
+          </span>{' '}
+          wins! 👑
+        </>
+      )
+      bannerClass = `game-over winner-${winner.toLowerCase()}`
     }
-    const newBoard = [...cells]
-    newBoard[cellIndex] = currentPlayer
-    setCells(newBoard)
-
-    setCurrentPlayer(currentPlayer === 'X' ? 'O' : 'X')
   }
 
   return (
-    <GameBoard gameData={gameData} onReset={handleReset}>
+    <GameBoard
+      gameData={gameData}
+      onReset={handleReset}
+      onResetScoreboard={handleResetScoreboard}
+    >
+      <ScoreBoard data={scoreboardData} />
+      <StatusBanner content={statusContent} bannerClassName={bannerClass} />
+
       <div className={`tictactoe-grid current-${currentPlayer.toLowerCase()}`}>
         {cells.map((value, index) => (
           <button

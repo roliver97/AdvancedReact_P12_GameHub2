@@ -1,0 +1,38 @@
+.game-status-banner {
+  background-color: var(--gh-color-2);
+  padding: var(--gh-space-m);
+  border: 2px solid var(--gh-color-4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  border-radius: var(--gh-radius-m);
+}
+
+.player-highlight {
+  font-weight: 700;
+  margin-left: 6px;
+}
+
+.player-highlight.x {
+  color: var(--gh-player-x-color);
+}
+
+.player-highlight.o {
+  color: var(--gh-player-o-color);
+}
+
+.game-status-banner.game-over.tie {
+  border-color: var(--gh-draw-color);
+  background-color: rgba(255, 224, 87, 0.6);
+}
+
+.game-status-banner.game-over.winner-x {
+  border-color: var(--gh-player-x-color);
+  background-color: rgba(87, 140, 255, 0.6);
+}
+
+.game-status-banner.game-over.winner-o {
+  border-color: var(--gh-player-o-color);
+  background-color: rgba(255, 87, 87, 0.6);
+}

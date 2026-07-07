@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import './GameBoard.css'
 
-const GameBoard = ({ gameData, onReset, children }) => {
+const GameBoard = ({ gameData, onReset, onResetScoreboard, children }) => {
   const [isModalOpen, setIsModalOpen] = useState(false)
 
   const openModal = () => setIsModalOpen(true)
@@ -16,16 +16,19 @@ const GameBoard = ({ gameData, onReset, children }) => {
         </div>
         <p>{gameData.subtitle}</p>
       </div>
+
       <div className='game-board'>{children}</div>
 
       <div className='game-footer'>
         <div className='game-controls'>
-          {' '}
+          <button onClick={openModal} className='btn-instructions-game'>
+            Show Instructions
+          </button>
           <button onClick={onReset} className='btn-reset-game'>
             Reset Game
           </button>
-          <button onClick={openModal} className='btn-instructions-game'>
-            Show Instructions
+          <button onClick={onResetScoreboard} className='btn-reset-scoreboard'>
+            Reset Scoreboard
           </button>
         </div>
       </div>
