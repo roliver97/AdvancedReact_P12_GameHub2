@@ -5,10 +5,14 @@ import { GAMES_DATA } from '../../../constants/gamesData'
 import useTicTacToe from '../../../hooks/useTicTacToe'
 import ScoreBoard from '../../../components/GameBoard/ScoreBoard/ScoreBoard'
 import StatusBanner from '../../../components/GameBoard/StatusBanner/StatusBanner'
+import TicTacToeMenu from './TicTacToeMenu/TicTacToeMenu'
+import TicTacToeGrid from './TicTacToeGrid/TicTacToeGrid'
 
 const TicTacToe = () => {
   const gameData = GAMES_DATA.tictactoe
   const {
+    gameMode,
+    selectGameMode,
     cells,
     currentPlayer,
     winner,
@@ -59,20 +63,20 @@ const TicTacToe = () => {
       onReset={handleReset}
       onResetScoreboard={handleResetScoreboard}
     >
-      <ScoreBoard data={scoreboardData} />
-      <StatusBanner content={statusContent} bannerClassName={bannerClass} />
+      {!gameMode ? (
+        <TicTacToeMenu onSelectMode={selectGameMode} />
+      ) : (
+        <>
+          <ScoreBoard data={scoreboardData} />
+          <StatusBanner content={statusContent} bannerClassName={bannerClass} />
 
-      <div className={`tictactoe-grid current-${currentPlayer.toLowerCase()}`}>
-        {cells.map((value, index) => (
-          <button
-            key={index}
-            onClick={() => handleClick(index)}
-            className={`tictactoe-cell ${value !== null ? `${value.toLowerCase()}` : ''}`}
-          >
-            {value}
-          </button>
-        ))}
-      </div>
+          <TicTacToeGrid
+            cells={cells}
+            currentPlayer={currentPlayer}
+            onCellClick={handleClick}
+          />
+        </>
+      )}
     </GameBoard>
   )
 }

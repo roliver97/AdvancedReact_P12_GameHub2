@@ -1,0 +1,50 @@
+.tictactoe-menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--gh-space-xl) var(--gh-space-l);
+  background-color: var(--gh-color-2);
+  border: 2px solid var(--gh-color-4);
+  border-radius: var(--gh-radius-l);
+  max-width: 500px;
+  align-self: center;
+}
+
+.tictactoe-menu h3 {
+  font-size: 1.5rem;
+  margin-bottom: 24px;
+  color: #ffffff;
+}
+
+.menu-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+.btn-menu {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 24px;
+  background-color: rgba(255, 255, 255, 0.03);
+  border: 2px solid var(--gh-color-4);
+  border-radius: 16px;
+  color: #ffffff;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-menu:hover {
+  transform: scale(1.03);
+  background-color: rgba(255, 255, 255, 0.07);
+  border-color: var(--gh-player-x-color); /* Un detall de llum blava */
+}
+
+.menu-icon {
+  font-size: 1.5rem;
+}

@@ -13,6 +13,8 @@ const WINNING_COMBINATIONS = [
 ]
 
 const useTicTacToe = () => {
+  const [gameMode, setGameMode] = useState(null) // null = Menú inicial / '1P' = vs CPU / '2P' = 1vs1
+
   const [cells, setCells] = useState(Array(9).fill(null))
   const [isGameActive, setIsGameActive] = useState(false)
   const [currentPlayer, setCurrentPlayer] = useState('X')
@@ -23,6 +25,11 @@ const useTicTacToe = () => {
     draws: 0
   })
   const { saveGameResults } = useUserContext()
+
+  const selectGameMode = (mode) => {
+    setGameMode(mode)
+    handleReset() // Ens assegurem que el taulell estigui net al començar
+  }
 
   const checkWinner = (board) => {
     for (const combination of WINNING_COMBINATIONS) {
@@ -83,6 +90,8 @@ const useTicTacToe = () => {
   }
 
   return {
+    gameMode,
+    selectGameMode,
     cells,
     isGameActive,
     currentPlayer,
