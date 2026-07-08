@@ -12,7 +12,11 @@ const TicTacToe = () => {
   const gameData = GAMES_DATA.tictactoe
   const {
     gameMode,
+    lastGameModePlayed,
     selectGameMode,
+    gameDifficulty,
+    selectGameDifficulty,
+    changeGameMode,
     cells,
     currentPlayer,
     winner,
@@ -28,16 +32,20 @@ const TicTacToe = () => {
     { label: 'O Wins', value: scores.oWins, className: 'o-wins' }
   ]
 
+  const isBoardDisabled = gameMode === '1P' && currentPlayer === 'O'
+
   //! Los archivos .jsx (React) nos permiten guardar código HTML directamente dentro de una variable
-  let statusContent = (
+  let statusContent = currentPlayer ? (
     <>
       Current Player:{' '}
       <span className={`player-highlight ${currentPlayer.toLowerCase()}`}>
         {currentPlayer}
       </span>
     </>
-  )
-  let bannerClass = `current-${currentPlayer.toLowerCase()}`
+  ) : null
+  let bannerClass = currentPlayer
+    ? `current-${currentPlayer.toLowerCase()}`
+    : ''
 
   if (winner) {
     if (winner === 'Tie') {
@@ -57,14 +65,25 @@ const TicTacToe = () => {
     }
   }
 
+  console.log('game mode', gameMode)
+  console.log('last game mode', lastGameModePlayed)
+  console.log('game difficulty', gameDifficulty)
+
   return (
     <GameBoard
       gameData={gameData}
       onReset={handleReset}
       onResetScoreboard={handleResetScoreboard}
+      onChangeMode={changeGameMode}
     >
-      {!gameMode ? (
-        <TicTacToeMenu onSelectMode={selectGameMode} />
+      {!gameMode || gameDifficulty === 'pending' || gameMode === 'pending' ? (
+        <TicTacToeMenu
+          lastGameModePlayed={lastGameModePlayed}
+          onSelectMode={selectGameMode}
+          gameDifficulty={gameDifficulty}
+          onSelectDifficulty={selectGameDifficulty}
+          onResetScoreboard={handleResetScoreboard}
+        />
       ) : (
         <>
           <ScoreBoard data={scoreboardData} />
@@ -74,6 +93,7 @@ const TicTacToe = () => {
             cells={cells}
             currentPlayer={currentPlayer}
             onCellClick={handleClick}
+            isFieldsDisabled={isBoardDisabled}
           />
         </>
       )}

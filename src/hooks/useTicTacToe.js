@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useUserContext } from './useUserContext'
 
 const WINNING_COMBINATIONS = [
@@ -14,6 +14,8 @@ const WINNING_COMBINATIONS = [
 
 const useTicTacToe = () => {
   const [gameMode, setGameMode] = useState(null) // null = Menú inicial / '1P' = vs CPU / '2P' = 1vs1
+  const [gameDifficulty, setGameDifficulty] = useState(null) // for Player vs CPU === easy or hard
+  const [lastGameModePlayed, setLastGameModePlayed] = useState(null)
 
   const [cells, setCells] = useState(Array(9).fill(null))
   const [isGameActive, setIsGameActive] = useState(false)
@@ -28,7 +30,21 @@ const useTicTacToe = () => {
 
   const selectGameMode = (mode) => {
     setGameMode(mode)
-    handleReset() // Ens assegurem que el taulell estigui net al començar
+    setLastGameModePlayed(mode)
+    handleReset()
+  }
+
+  const selectGameDifficulty = (difficulty) => {
+    setGameDifficulty(difficulty)
+  }
+
+  const changeGameMode = () => {
+    setGameMode('pending')
+    setGameDifficulty(null)
+
+    setCells(Array(9).fill(null))
+    setIsGameActive(false)
+    setWinner(null)
   }
 
   const checkWinner = (board) => {
@@ -49,8 +65,12 @@ const useTicTacToe = () => {
   const handleReset = () => {
     setCells(Array(9).fill(null))
     setIsGameActive(false)
-    setCurrentPlayer('X')
+    setCurrentPlayer(null)
     setWinner(null)
+
+    const options = ['X', 'O']
+    const firstPlayer = options[Math.floor(Math.random() * options.length)]
+    setCurrentPlayer(firstPlayer)
   }
 
   const handleResetScoreboard = () => {
@@ -89,9 +109,36 @@ const useTicTacToe = () => {
     }
   }
 
+  useEffect(() => {
+    if (gameMode !== '1P' || currentPlayer !== 'O' || winner) return
+
+    const availableCells = cells
+      .map((cell, index) => (cell === null ? index : null))
+      .filter((value) => value !== null)
+
+    if (availableCells.length === 0) return
+
+    if (gameDifficulty === 'easy') {
+      const randomIndex =
+        availableCells[Math.floor(Math.random() * availableCells.length)]
+
+      const timer = setTimeout(() => {
+        handleClick(randomIndex)
+      }, 600)
+
+      return () => clearTimeout(timer)
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentPlayer, gameMode, winner, cells])
+
   return {
     gameMode,
+    lastGameModePlayed,
     selectGameMode,
+    gameDifficulty,
+    selectGameDifficulty,
+    changeGameMode,
     cells,
     isGameActive,
     currentPlayer,

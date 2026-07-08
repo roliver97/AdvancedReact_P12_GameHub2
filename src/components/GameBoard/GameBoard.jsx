@@ -1,7 +1,14 @@
 import React, { useState } from 'react'
 import './GameBoard.css'
 
-const GameBoard = ({ gameData, onReset, onResetScoreboard, children }) => {
+const GameBoard = ({
+  gameData,
+  onReset,
+  onResetScoreboard,
+  children,
+  onChangeMode
+}) => {
+  // onChangeMode como prop opcional, solo para juegos que lo requieran
   const [isModalOpen, setIsModalOpen] = useState(false)
 
   const openModal = () => setIsModalOpen(true)
@@ -30,6 +37,11 @@ const GameBoard = ({ gameData, onReset, onResetScoreboard, children }) => {
           <button onClick={onResetScoreboard} className='btn-reset-scoreboard'>
             Reset Scoreboard
           </button>
+          {onChangeMode && (
+            <button className='btn-change-mode' onClick={onChangeMode}>
+              Change Game Mode
+            </button>
+          )}
         </div>
       </div>
 
