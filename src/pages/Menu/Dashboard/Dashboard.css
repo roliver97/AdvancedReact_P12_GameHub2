@@ -84,6 +84,7 @@
 }
 
 .dashboard-recent-cards {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: var(--gh-space-l);
@@ -97,6 +98,11 @@
 
 .dashboard-recent-cards.custom-scrollbar::-webkit-scrollbar-track {
   margin: var(--gh-space-m);
+}
+
+.dashboard-recent-cards:has(.no-data-text) {
+  justify-content: center;
+  align-items: center;
 }
 
 .recent-card {

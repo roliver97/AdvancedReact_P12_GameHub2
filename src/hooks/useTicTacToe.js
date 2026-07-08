@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useUserContext } from './useUserContext'
 
 const WINNING_COMBINATIONS = [
   [0, 1, 2],
@@ -21,6 +22,7 @@ const useTicTacToe = () => {
     oWins: 0,
     draws: 0
   })
+  const { saveGameResults } = useUserContext()
 
   const checkWinner = (board) => {
     for (const combination of WINNING_COMBINATIONS) {
@@ -70,6 +72,11 @@ const useTicTacToe = () => {
           return { ...prevScores, oWins: prevScores.oWins + 1 }
         return { ...prevScores, draws: prevScores.draws + 1 }
       })
+      if (gameWinner === 'X') {
+        saveGameResults('tictactoe', 100)
+      } else if (gameWinner === 'Tie') {
+        saveGameResults('tictactoe', 20)
+      }
     } else {
       setCurrentPlayer(currentPlayer === 'X' ? 'O' : 'X')
     }
