@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useUserContext } from './useUserContext'
+import { findBestMove } from '../utils/ticTacToeAI'
 
-const WINNING_COMBINATIONS = [
+export const WINNING_COMBINATIONS = [
   [0, 1, 2],
   [3, 4, 5],
   [6, 7, 8],
@@ -118,19 +119,31 @@ const useTicTacToe = () => {
 
     if (availableCells.length === 0) return
 
-    if (gameDifficulty === 'easy') {
-      const randomIndex =
-        availableCells[Math.floor(Math.random() * availableCells.length)]
+    let nextMoveIndex = null
+    const randomMove =
+      availableCells[Math.floor(Math.random() * availableCells.length)]
 
+    if (gameDifficulty === 'easy') {
+      nextMoveIndex = randomMove
+    } else if (gameDifficulty === 'hard') {
+      const shouldPlayPerfect = Math.random() < 0.85 // Un 80% de probabilidad
+      if (shouldPlayPerfect) {
+        nextMoveIndex = findBestMove([...cells])
+      } else {
+        nextMoveIndex = randomMove
+      }
+    }
+
+    if (nextMoveIndex !== null) {
       const timer = setTimeout(() => {
-        handleClick(randomIndex)
+        handleClick(nextMoveIndex)
       }, 600)
 
       return () => clearTimeout(timer)
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentPlayer, gameMode, winner, cells])
+  }, [currentPlayer, gameMode, gameDifficulty, winner, cells])
 
   return {
     gameMode,
