@@ -20,14 +20,7 @@ const TicTacToe = () => {
     handleReset,
     handleResetScoreboard
   } = useTicTacToe()
-  const {
-    gameMode,
-    gameDifficulty,
-    lastGameModePlayed,
-    selectGameMode,
-    selectGameDifficulty,
-    changeGameMode
-  } = useUserContext()
+  const { gameMode, gameDifficulty, changeGameMode } = useUserContext()
 
   const scoreboardData = [
     { label: 'X Wins', value: scores.xWins, className: 'x-wins' },
@@ -73,14 +66,11 @@ const TicTacToe = () => {
       gameData={gameData}
       onReset={handleReset}
       onResetScoreboard={handleResetScoreboard}
-      onChangeMode={changeGameMode}
+      onChangeMode={() => changeGameMode(handleReset)}
     >
       {!gameMode || gameDifficulty === 'pending' || gameMode === 'pending' ? (
         <TicTacToeMenu
-          lastGameModePlayed={lastGameModePlayed}
-          onSelectMode={selectGameMode}
           gameDifficulty={gameDifficulty}
-          onSelectDifficulty={selectGameDifficulty}
           onResetScoreboard={handleResetScoreboard}
         />
       ) : (

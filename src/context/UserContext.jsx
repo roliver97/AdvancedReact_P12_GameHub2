@@ -66,9 +66,13 @@ export const UserProvider = ({ children }) => {
     setGameDifficulty(difficulty)
   }
 
-  const changeGameMode = () => {
+  const changeGameMode = (callbackFunction) => {
     setGameMode('pending')
     setGameDifficulty(null)
+
+    if (callbackFunction && typeof callbackFunction === 'function') {
+      callbackFunction()
+    }
   }
 
   return (

@@ -1,13 +1,11 @@
 import React from 'react'
 import './TicTacToeMenu.css'
+import { useUserContext } from '../../../../hooks/useUserContext'
 
-const TicTacToeMenu = ({
-  lastGameModePlayed,
-  onSelectMode,
-  gameDifficulty,
-  onSelectDifficulty,
-  onResetScoreboard
-}) => {
+const TicTacToeMenu = ({ gameDifficulty, onResetScoreboard }) => {
+  const { lastGameModePlayed, selectGameMode, selectGameDifficulty } =
+    useUserContext()
+
   return (
     <>
       {!gameDifficulty || gameDifficulty !== 'pending' ? (
@@ -17,8 +15,8 @@ const TicTacToeMenu = ({
             <button
               className='btn-menu'
               onClick={() => {
-                onSelectMode('1P')
-                onSelectDifficulty('pending')
+                selectGameMode('1P')
+                selectGameDifficulty('pending')
               }}
             >
               <span className='menu-icon'>🤖</span>
@@ -30,7 +28,7 @@ const TicTacToeMenu = ({
                 if (lastGameModePlayed !== '2P') {
                   onResetScoreboard()
                 }
-                onSelectMode('2P')
+                selectGameMode('2P')
               }}
             >
               <span className='menu-icon'>👥</span>
@@ -48,7 +46,7 @@ const TicTacToeMenu = ({
                 if (lastGameModePlayed !== '1P') {
                   onResetScoreboard()
                 }
-                onSelectDifficulty('easy')
+                selectGameDifficulty('easy')
               }}
             >
               <span className='menu-icon'>🟩</span>
@@ -60,7 +58,7 @@ const TicTacToeMenu = ({
                 if (lastGameModePlayed !== '1P') {
                   onResetScoreboard()
                 }
-                onSelectDifficulty('hard')
+                selectGameDifficulty('hard')
               }}
             >
               <span className='menu-icon'>🟥</span>
