@@ -2,9 +2,11 @@ import React from 'react'
 import './TicTacToeMenu.css'
 import { useUserContext } from '../../../../hooks/useUserContext'
 
-const TicTacToeMenu = ({ gameDifficulty, onResetScoreboard }) => {
+const TicTacToeMenu = ({ gameDifficulty }) => {
   const { lastGameModePlayed, selectGameMode, selectGameDifficulty } =
     useUserContext()
+
+  console.log(lastGameModePlayed)
 
   return (
     <>
@@ -25,9 +27,6 @@ const TicTacToeMenu = ({ gameDifficulty, onResetScoreboard }) => {
             <button
               className='btn-menu'
               onClick={() => {
-                if (lastGameModePlayed !== '2P') {
-                  onResetScoreboard()
-                }
                 selectGameMode('2P')
               }}
             >
@@ -43,9 +42,6 @@ const TicTacToeMenu = ({ gameDifficulty, onResetScoreboard }) => {
             <button
               className='btn-menu'
               onClick={() => {
-                if (lastGameModePlayed !== '1P') {
-                  onResetScoreboard()
-                }
                 selectGameDifficulty('easy')
               }}
             >
@@ -55,9 +51,6 @@ const TicTacToeMenu = ({ gameDifficulty, onResetScoreboard }) => {
             <button
               className='btn-menu'
               onClick={() => {
-                if (lastGameModePlayed !== '1P') {
-                  onResetScoreboard()
-                }
                 selectGameDifficulty('hard')
               }}
             >

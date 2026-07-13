@@ -66,13 +66,13 @@ const TicTacToe = () => {
       gameData={gameData}
       onReset={handleReset}
       onResetScoreboard={handleResetScoreboard}
-      onChangeMode={() => changeGameMode(handleReset)}
+      onChangeMode={() => {
+        changeGameMode(handleReset)
+        handleResetScoreboard()
+      }}
     >
       {!gameMode || gameDifficulty === 'pending' || gameMode === 'pending' ? (
-        <TicTacToeMenu
-          gameDifficulty={gameDifficulty}
-          onResetScoreboard={handleResetScoreboard}
-        />
+        <TicTacToeMenu gameDifficulty={gameDifficulty} />
       ) : (
         <>
           <ScoreBoard data={scoreboardData} />
