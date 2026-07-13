@@ -9,6 +9,7 @@ import Dashboard from './pages/Menu/Dashboard/Dashboard'
 import Leaderboard from './pages/Menu/Leaderboard/Leaderboard'
 import Profile from './pages/Menu/Profile/Profile'
 import TicTacToe from './pages/Games/TicTacToe/TicTacToe'
+import Memory from './pages/Games/Memory/Memory'
 
 const App = () => {
   const { playerInfo } = useUserContext()
@@ -42,6 +43,7 @@ const App = () => {
           <Route path='/leaderboard' element={<Leaderboard />} />
           <Route path='/profile' element={<Profile />} />
           <Route path='/tictactoe' element={<TicTacToe />} />
+          <Route path='/memory' element={<Memory />} />
         </Routes>
       </main>
     </>

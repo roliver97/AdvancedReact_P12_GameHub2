@@ -14,10 +14,6 @@ export const WINNING_COMBINATIONS = [
 ]
 
 const useTicTacToe = () => {
-  const [gameMode, setGameMode] = useState(null) // null = Menú inicial / '1P' = vs CPU / '2P' = 1vs1
-  const [gameDifficulty, setGameDifficulty] = useState(null) // for Player vs CPU === easy or hard
-  const [lastGameModePlayed, setLastGameModePlayed] = useState(null)
-
   const [cells, setCells] = useState(Array(9).fill(null))
   const [isGameActive, setIsGameActive] = useState(false)
   const [currentPlayer, setCurrentPlayer] = useState('X')
@@ -27,26 +23,7 @@ const useTicTacToe = () => {
     oWins: 0,
     draws: 0
   })
-  const { saveGameResults } = useUserContext()
-
-  const selectGameMode = (mode) => {
-    setGameMode(mode)
-    setLastGameModePlayed(mode)
-    handleReset()
-  }
-
-  const selectGameDifficulty = (difficulty) => {
-    setGameDifficulty(difficulty)
-  }
-
-  const changeGameMode = () => {
-    setGameMode('pending')
-    setGameDifficulty(null)
-
-    setCells(Array(9).fill(null))
-    setIsGameActive(false)
-    setWinner(null)
-  }
+  const { gameMode, gameDifficulty, saveGameResults } = useUserContext()
 
   const checkWinner = (board) => {
     for (const combination of WINNING_COMBINATIONS) {
@@ -63,15 +40,19 @@ const useTicTacToe = () => {
     return null
   }
 
+  const randomizeFirstPlayer = () => {
+    const options = ['X', 'O']
+    const firstPlayer = options[Math.floor(Math.random() * options.length)]
+    setCurrentPlayer(firstPlayer)
+  }
+
   const handleReset = () => {
     setCells(Array(9).fill(null))
     setIsGameActive(false)
     setCurrentPlayer(null)
     setWinner(null)
 
-    const options = ['X', 'O']
-    const firstPlayer = options[Math.floor(Math.random() * options.length)]
-    setCurrentPlayer(firstPlayer)
+    randomizeFirstPlayer()
   }
 
   const handleResetScoreboard = () => {
@@ -146,12 +127,6 @@ const useTicTacToe = () => {
   }, [currentPlayer, gameMode, gameDifficulty, winner, cells])
 
   return {
-    gameMode,
-    lastGameModePlayed,
-    selectGameMode,
-    gameDifficulty,
-    selectGameDifficulty,
-    changeGameMode,
     cells,
     isGameActive,
     currentPlayer,

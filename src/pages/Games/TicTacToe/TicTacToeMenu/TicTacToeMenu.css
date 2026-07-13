@@ -42,7 +42,7 @@
 .btn-menu:hover {
   transform: scale(1.03);
   background-color: rgba(255, 255, 255, 0.07);
-  border-color: var(--gh-player-x-color); /* Un detall de llum blava */
+  border-color: var(--gh-color-5);
 }
 
 .menu-icon {

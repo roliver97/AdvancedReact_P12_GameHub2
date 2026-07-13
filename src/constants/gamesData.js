@@ -18,9 +18,9 @@ export const GAMES_DATA = {
     subtitle: 'Find all matching pairs of cards in the fewest moves possible.',
     icon: '/assets/icons/sidebar/memory.png',
     howToPlay: [
-      'Mix up the cards and lay them face down on the table.',
+      'The cards start mixed up and face down on the board.',
       'Turn over any two cards. If they match, they stay face up.',
-      "If they don't match, turn them face down again. Remember what was on each card and where it was.",
+      "If they don't match, the cards will turn face down again automatically. Remember what was on each card and where it was.",
       'The game ends when all the pairs have been found. Try to do it in the fewest turns!'
     ]
   },

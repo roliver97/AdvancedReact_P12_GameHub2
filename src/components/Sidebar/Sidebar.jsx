@@ -4,8 +4,8 @@ import { useUserContext } from '../../hooks/useUserContext'
 import { NavLink } from 'react-router-dom'
 
 const Sidebar = ({ isOpen, toggleSidebar }) => {
-  const { playerInfo } = useUserContext()
-  console.log('Soy Sidebar y me renderizo')
+  const { playerInfo, navigateToGame, activeGame } = useUserContext()
+  console.log('Soy Sidebar y me renderizo', `MI JUEGO ACTIVO ES ${activeGame}`)
 
   return (
     <aside
@@ -33,10 +33,23 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
       <nav className='sidebar-nav'>
         <div className='sidebar-nav-group'>
           <h2 className='sidebar-group-title'>Games</h2>
-          <NavLink className='sidebar-link' to='tictactoe'>
+          <NavLink
+            className='sidebar-link'
+            to='tictactoe'
+            onClick={() => navigateToGame('tictactoe')}
+          >
             {' '}
             <img src='./assets/icons/sidebar/tictactoe.svg' alt='TicTacToe' />
             <span>Tic Tac Toe</span>
+          </NavLink>
+          <NavLink
+            className='sidebar-link'
+            to='memory'
+            onClick={() => navigateToGame('memory')}
+          >
+            {' '}
+            <img src='./assets/icons/sidebar/memory.png' alt='Memory' />
+            <span>Memory</span>
           </NavLink>
         </div>
         <div className='sidebar-nav-group'>

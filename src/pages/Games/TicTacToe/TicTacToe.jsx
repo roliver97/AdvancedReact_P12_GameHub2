@@ -7,16 +7,11 @@ import ScoreBoard from '../../../components/GameBoard/ScoreBoard/ScoreBoard'
 import StatusBanner from '../../../components/GameBoard/StatusBanner/StatusBanner'
 import TicTacToeMenu from './TicTacToeMenu/TicTacToeMenu'
 import TicTacToeGrid from './TicTacToeGrid/TicTacToeGrid'
+import { useUserContext } from '../../../hooks/useUserContext'
 
 const TicTacToe = () => {
   const gameData = GAMES_DATA.tictactoe
   const {
-    gameMode,
-    lastGameModePlayed,
-    selectGameMode,
-    gameDifficulty,
-    selectGameDifficulty,
-    changeGameMode,
     cells,
     currentPlayer,
     winner,
@@ -25,6 +20,14 @@ const TicTacToe = () => {
     handleReset,
     handleResetScoreboard
   } = useTicTacToe()
+  const {
+    gameMode,
+    gameDifficulty,
+    lastGameModePlayed,
+    selectGameMode,
+    selectGameDifficulty,
+    changeGameMode
+  } = useUserContext()
 
   const scoreboardData = [
     { label: 'X Wins', value: scores.xWins, className: 'x-wins' },
@@ -64,10 +67,6 @@ const TicTacToe = () => {
       bannerClass = `game-over winner-${winner.toLowerCase()}`
     }
   }
-
-  console.log('game mode', gameMode)
-  console.log('last game mode', lastGameModePlayed)
-  console.log('game difficulty', gameDifficulty)
 
   return (
     <GameBoard

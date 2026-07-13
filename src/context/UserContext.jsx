@@ -13,6 +13,11 @@ export const UserProvider = ({ children }) => {
   const [gamesStats, setGamesStats] = useState(INITIAL_GAMES_STATS)
   const [recents, setRecents] = useState(INITIAL_RECENTS)
 
+  const [activeGame, setActiveGame] = useState(null)
+  const [gameMode, setGameMode] = useState(null) // null = Menú inicial / '1P' = vs CPU / '2P' = 1vs1
+  const [gameDifficulty, setGameDifficulty] = useState(null) // for Player vs CPU === easy or hard
+  const [lastGameModePlayed, setLastGameModePlayed] = useState(null)
+
   const saveGameResults = (gameId, pointsGained) => {
     const today = new Date().toLocaleDateString()
     const targetGame = gamesStats.find((g) => g.id === gameId)
@@ -45,6 +50,27 @@ export const UserProvider = ({ children }) => {
     )
   }
 
+  const navigateToGame = (gameName) => {
+    setActiveGame(gameName)
+    setGameMode(null)
+    setGameDifficulty(null)
+    setLastGameModePlayed(null)
+  }
+
+  const selectGameMode = (mode) => {
+    setGameMode(mode)
+    setLastGameModePlayed(mode)
+  }
+
+  const selectGameDifficulty = (difficulty) => {
+    setGameDifficulty(difficulty)
+  }
+
+  const changeGameMode = () => {
+    setGameMode('pending')
+    setGameDifficulty(null)
+  }
+
   return (
     <UserContext.Provider
       value={{
@@ -52,7 +78,20 @@ export const UserProvider = ({ children }) => {
         setPlayerInfo,
         gamesStats,
         recents,
-        saveGameResults
+        saveGameResults,
+
+        activeGame,
+        gameMode,
+        setGameMode,
+        gameDifficulty,
+        setGameDifficulty,
+        lastGameModePlayed,
+        setLastGameModePlayed,
+
+        navigateToGame,
+        selectGameMode,
+        selectGameDifficulty,
+        changeGameMode
       }}
     >
       {children}
