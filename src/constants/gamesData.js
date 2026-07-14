@@ -10,7 +10,23 @@ export const GAMES_DATA = {
       'You are X, your friend (or the computer) is O. Players take turns putting their marks in empty squares.',
       'The first player to get 3 of their marks in a row (up, down, across, or diagonally) is the winner.',
       'When all 9 squares are full, the game is over. If no player has 3 marks, the game ends in a tie.'
-    ]
+    ],
+    modeOptions: {
+      firstMode: {
+        icon: '🤖',
+        text: '1 Player (vs CPU)',
+        value: 'tictactoe-1P'
+      },
+      secondMode: {
+        icon: '👥',
+        text: '2 Players (Local)',
+        value: 'tictactoe-2P'
+      }
+    },
+    difficultyOptions: {
+      easy: { icon: '🟩', text: 'Easy' },
+      hard: { icon: '🟥', text: 'Hard' }
+    }
   },
   memory: {
     id: 'memory',
@@ -22,7 +38,15 @@ export const GAMES_DATA = {
       'Turn over any two cards. If they match, they stay face up.',
       "If they don't match, the cards will turn face down again automatically. Remember what was on each card and where it was.",
       'The game ends when all the pairs have been found. Try to do it in the fewest turns!'
-    ]
+    ],
+    modeOptions: {
+      firstMode: { icon: '⏱️', text: 'Time Attack', value: 'memo-timeAttack' },
+      secondMode: { icon: '🧘', text: 'Zen Mode', value: 'memo-zenMode' }
+    },
+    difficultyOptions: {
+      easy: { icon: '🟩', text: 'Easy' },
+      hard: { icon: '🟥', text: 'Hard' }
+    }
   },
   rockpaperscissors: {
     id: 'rockpaperscissors',

@@ -5,9 +5,9 @@ import { GAMES_DATA } from '../../../constants/gamesData'
 import useTicTacToe from '../../../hooks/useTicTacToe'
 import ScoreBoard from '../../../components/GameBoard/ScoreBoard/ScoreBoard'
 import StatusBanner from '../../../components/GameBoard/StatusBanner/StatusBanner'
-import TicTacToeMenu from './TicTacToeMenu/TicTacToeMenu'
 import TicTacToeGrid from './TicTacToeGrid/TicTacToeGrid'
 import { useUserContext } from '../../../hooks/useUserContext'
+import GameMenu from '../../../components/GameBoard/GameMenu/GameMenu'
 
 const TicTacToe = () => {
   const gameData = GAMES_DATA.tictactoe
@@ -28,7 +28,7 @@ const TicTacToe = () => {
     { label: 'O Wins', value: scores.oWins, className: 'o-wins' }
   ]
 
-  const isBoardDisabled = gameMode === '1P' && currentPlayer === 'O'
+  const isBoardDisabled = gameMode === 'tictactoe-1P' && currentPlayer === 'O'
 
   //! Los archivos .jsx (React) nos permiten guardar código HTML directamente dentro de una variable
   let statusContent = currentPlayer ? (
@@ -72,7 +72,7 @@ const TicTacToe = () => {
       }}
     >
       {!gameMode || gameDifficulty === 'pending' || gameMode === 'pending' ? (
-        <TicTacToeMenu gameDifficulty={gameDifficulty} />
+        <GameMenu gameDifficulty={gameDifficulty} gameData={gameData} />
       ) : (
         <>
           <ScoreBoard data={scoreboardData} />

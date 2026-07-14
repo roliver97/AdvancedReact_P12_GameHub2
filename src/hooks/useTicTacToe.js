@@ -92,7 +92,7 @@ const useTicTacToe = () => {
   }
 
   useEffect(() => {
-    if (gameMode !== '1P' || currentPlayer !== 'O' || winner) return
+    if (gameMode !== 'tictactoe-1P' || currentPlayer !== 'O' || winner) return
 
     const availableCells = cells
       .map((cell, index) => (cell === null ? index : null))
