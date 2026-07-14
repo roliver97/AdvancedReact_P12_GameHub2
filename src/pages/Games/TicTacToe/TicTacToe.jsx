@@ -11,6 +11,7 @@ import GameMenu from '../../../components/GameBoard/GameMenu/GameMenu'
 
 const TicTacToe = () => {
   const gameData = GAMES_DATA.tictactoe
+  const { gameMode, gameDifficulty, changeGameMode } = useUserContext()
   const {
     cells,
     currentPlayer,
@@ -20,7 +21,6 @@ const TicTacToe = () => {
     handleReset,
     handleResetScoreboard
   } = useTicTacToe()
-  const { gameMode, gameDifficulty, changeGameMode } = useUserContext()
 
   const scoreboardData = [
     { label: 'X Wins', value: scores.xWins, className: 'x-wins' },

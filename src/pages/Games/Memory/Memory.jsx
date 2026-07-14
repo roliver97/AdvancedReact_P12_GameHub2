@@ -4,16 +4,39 @@ import GameBoard from '../../../components/GameBoard/GameBoard'
 import { GAMES_DATA } from '../../../constants/gamesData'
 import { useUserContext } from '../../../hooks/useUserContext'
 import GameMenu from '../../../components/GameBoard/GameMenu/GameMenu'
+import ScoreBoard from '../../../components/GameBoard/ScoreBoard/ScoreBoard'
+import MemoryGrid from './MemoryGrid/MemoryGrid'
+import useMemory from '../../../hooks/useMemory'
 
 const Memory = () => {
-  const { gameMode, gameDifficulty } = useUserContext()
   const gameData = GAMES_DATA.memory
+  const { cards } = useMemory()
+  const { gameMode, gameDifficulty } = useUserContext()
+
+  console.log(cards)
+
+  let scoreboardData =
+    gameMode === 'memo-timeAttack'
+      ? [
+          { label: 'Moves', value: '?', className: 'memo-moves' },
+          { label: 'Matches', value: '?', className: 'memo-matches' },
+          { label: 'Time', value: '?', className: 'memo-time' },
+          { label: 'Best Time', value: '?', className: 'memo-bestTime' }
+        ]
+      : [
+          { label: 'Moves', value: '?', className: 'memo-moves' },
+          { label: 'Matches', value: '?', className: 'memo-matches' }
+        ]
+
   return (
     <GameBoard gameData={gameData}>
       {!gameMode || gameDifficulty === 'pending' || gameMode === 'pending' ? (
         <GameMenu gameDifficulty={gameDifficulty} gameData={gameData} />
       ) : (
-        ''
+        <>
+          <ScoreBoard data={scoreboardData} />
+          <MemoryGrid cards={cards} />
+        </>
       )}
     </GameBoard>
   )
