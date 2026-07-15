@@ -19,6 +19,56 @@ const memoryReducer = (state, action) => {
         isGameActive: false
       }
 
+    case 'START_GAME':
+      return {
+        ...state,
+        isGameActive: true
+      }
+
+    case 'FLIP_CARD': {
+      const cardIndex = action.payload
+      const clickedCard = state.cards[cardIndex]
+
+      if (clickedCard.isFlipped) return state
+
+      const waitingCardIndex = state.cards.findIndex(
+        (card) => card.isFlipped && !card.isMatched
+      )
+
+      const newCards = [...state.cards]
+
+      if (waitingCardIndex === -1) {
+        //! Si no encuentra ninguna, findIndex devuelve -1
+        //* Entonces, esto significa que no hay una primera carta esperando...
+        newCards[cardIndex] = { ...clickedCard, isFlipped: true }
+        return {
+          ...state,
+          cards: newCards
+        }
+      }
+
+      newCards[cardIndex] = { ...clickedCard, isFlipped: true }
+      const isMatch = newCards[waitingCardIndex].id === clickedCard.id
+
+      if (isMatch) {
+        newCards[cardIndex].isMatched = true
+        newCards[waitingCardIndex].isMatched = true
+
+        return {
+          ...state,
+          moves: state.moves + 1,
+          matches: state.matches + 1,
+          cards: newCards
+        }
+      } else {
+        return {
+          ...state,
+          moves: state.moves + 1,
+          cards: newCards
+        }
+      }
+    }
+
     default:
       return state
   }
@@ -40,13 +90,26 @@ const useMemory = () => {
       (card, index) => ({
         ...card,
         uniqueId: `${card.id}-${index}`,
-        isFlipped: false
+        isFlipped: false,
+        isMatched: false
       })
     )
 
     const cardsShuffled = [...duplicatedCards].sort(() => Math.random() - 0.5)
 
     dispatch({ type: 'INITIALIZE_GAME', payload: cardsShuffled })
+  }
+
+  const handleReset = () => {
+    initializeGame()
+  }
+
+  const handleClick = (cardIndex) => {
+    if (!gameState.isGameActive) {
+      dispatch({ type: 'START_GAME' })
+    }
+
+    dispatch({ type: 'FLIP_CARD', payload: cardIndex })
   }
 
   useEffect(() => {
@@ -60,7 +123,9 @@ const useMemory = () => {
     moves: gameState.moves,
     matches: gameState.matches,
     isGameActive: gameState.isGameActive,
-    initializeGame
+    initializeGame,
+    handleReset,
+    handleClick
   }
 }
 

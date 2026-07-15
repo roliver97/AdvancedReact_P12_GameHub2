@@ -10,7 +10,7 @@ import useMemory from '../../../hooks/useMemory'
 
 const Memory = () => {
   const gameData = GAMES_DATA.memory
-  const { cards } = useMemory()
+  const { cards, handleReset, handleClick } = useMemory()
   const { gameMode, gameDifficulty } = useUserContext()
 
   console.log(
@@ -36,13 +36,13 @@ const Memory = () => {
         ]
 
   return (
-    <GameBoard gameData={gameData}>
+    <GameBoard gameData={gameData} onReset={handleReset}>
       {!gameMode || gameDifficulty === 'pending' ? (
         <GameMenu gameDifficulty={gameDifficulty} gameData={gameData} />
       ) : (
         <>
           <ScoreBoard data={scoreboardData} />
-          <MemoryGrid cards={cards} />
+          <MemoryGrid cards={cards} onCardClick={handleClick} />
         </>
       )}
     </GameBoard>
