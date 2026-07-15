@@ -24,7 +24,7 @@ describe('useMemory - Cards empty Array Bug', () => {
     expect(result.current.cards.length).toBe(0)
   })
 
-  it('debería tener un array de 12 cards cuando cambiamos la dificultad "pending" a "easy"', () => {
+  it('debería tener un array de 12 cards cuando cambiamos la dificultad "pending" a "easy" en modo "Time Attack"', () => {
     const { result, rerender } = renderHook(() => useMemory())
     expect(result.current.cards.length).toBe(0)
 
@@ -36,12 +36,24 @@ describe('useMemory - Cards empty Array Bug', () => {
     expect(result.current.cards.length).toBe(12)
   })
 
-  it('debería tener un array de 24 cards cuando cambiamos la dificultad "pending" a "hard"', () => {
+  it('debería tener un array de 24 cards cuando cambiamos la dificultad "pending" a "hard" en modo "Time Attack"', () => {
     const { result, rerender } = renderHook(() => useMemory())
     expect(result.current.cards.length).toBe(0)
 
     mockDifficulty = 'hard'
     mockGameMode = 'memo-timeAttack'
+
+    rerender()
+
+    expect(result.current.cards.length).toBe(24)
+  })
+
+  it('debería tener un array de 24 cards cuando elegimos modo "Zen" y difficulty null', () => {
+    const { result, rerender } = renderHook(() => useMemory())
+    expect(result.current.cards.length).toBe(0)
+
+    mockDifficulty = null
+    mockGameMode = 'memo-zenMode'
 
     rerender()
 

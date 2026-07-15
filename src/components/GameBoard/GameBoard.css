@@ -18,6 +18,7 @@
 .game-board,
 .game-footer {
   width: 60%;
+  max-width: 800px;
 
   min-width: 400px;
 }
@@ -59,7 +60,9 @@
 
 .game-controls {
   display: flex;
-  gap: var(--gh-space-xl);
+  gap: var(--gh-space-l);
+
+  justify-content: center;
 }
 
 .game-controls > button {

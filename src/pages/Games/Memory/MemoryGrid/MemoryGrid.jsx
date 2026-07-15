@@ -2,7 +2,7 @@ import React from 'react'
 
 const MemoryGrid = ({ cards }) => {
   return (
-    <div className='memory-grid'>
+    <div className={`memory-grid-${cards.length}`}>
       {cards.map((card, index) => (
         <button
           key={index}

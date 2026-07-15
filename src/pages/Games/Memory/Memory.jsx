@@ -13,6 +13,15 @@ const Memory = () => {
   const { cards } = useMemory()
   const { gameMode, gameDifficulty } = useUserContext()
 
+  console.log(
+    'GameMode:',
+    gameMode,
+    ' and GameDifficulty:',
+    gameDifficulty,
+    ' and cards number are:',
+    cards
+  )
+
   let scoreboardData =
     gameMode === 'memo-timeAttack'
       ? [
@@ -28,7 +37,7 @@ const Memory = () => {
 
   return (
     <GameBoard gameData={gameData}>
-      {!gameMode || gameDifficulty === 'pending' || gameMode === 'pending' ? (
+      {!gameMode || gameDifficulty === 'pending' ? (
         <GameMenu gameDifficulty={gameDifficulty} gameData={gameData} />
       ) : (
         <>

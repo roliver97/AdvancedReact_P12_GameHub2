@@ -32,7 +32,8 @@ const useMemory = () => {
     const catalog = GAMES_DATA.memory.cardsCatalog
     const randomizedCatalog = [...catalog].sort(() => Math.random() - 0.5)
 
-    const cardsNeeded = gameDifficulty === 'easy' ? 6 : 12
+    const cardsNeeded =
+      gameDifficulty === 'hard' || gameMode === 'memo-zenMode' ? 12 : 6
     const selectedCards = randomizedCatalog.slice(0, cardsNeeded)
 
     const duplicatedCards = [...selectedCards, ...selectedCards].map(
@@ -49,14 +50,7 @@ const useMemory = () => {
   }
 
   useEffect(() => {
-    if (
-      !gameDifficulty ||
-      gameDifficulty === 'pending' ||
-      !gameMode ||
-      gameMode === 'pending'
-    )
-      return
-
+    if (!gameMode || (gameMode && gameDifficulty === 'pending')) return
     initializeGame()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [gameDifficulty, gameMode])

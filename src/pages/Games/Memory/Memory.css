@@ -1,0 +1,40 @@
+.memory-grid-12 {
+  flex: 1;
+
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-rows: repeat(4, minmax(0, 1fr));
+
+  gap: var(--gh-space-s);
+}
+
+.memory-grid-24 {
+  flex: 1;
+
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-rows: repeat(6, minmax(0, 1fr));
+  gap: var(--gh-space-xs);
+}
+
+.memory-card {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  border-radius: var(--gh-radius-m);
+  border: 2px solid var(--gh-color-5);
+  outline: none;
+  background-color: transparent;
+  overflow: hidden;
+}
+
+.memory-card img {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+}
