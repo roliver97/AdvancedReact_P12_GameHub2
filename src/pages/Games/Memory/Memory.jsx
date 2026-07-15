@@ -13,8 +13,6 @@ const Memory = () => {
   const { cards } = useMemory()
   const { gameMode, gameDifficulty } = useUserContext()
 
-  console.log(cards)
-
   let scoreboardData =
     gameMode === 'memo-timeAttack'
       ? [
