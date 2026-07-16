@@ -8,7 +8,7 @@ const MemoryGrid = ({ cards, onCardClick }) => {
           key={card.uniqueId}
           onClick={() => onCardClick(index)}
           /*disabled={isFieldsDisabled || value !== null} */
-          className={`memory-card ${card.uniqueId !== null ? `${card.uniqueId.toLowerCase()}` : ''} ${card.isFlipped ? 'flipped' : ''}`}
+          className={`memory-card ${card.uniqueId !== null ? `${card.uniqueId.toLowerCase()}` : ''} ${card.isFlipped ? 'flipped' : ''} ${card.isMatched ? 'matched' : ''}`}
         >
           <img src={card.icon} alt={card.id} />
         </button>

@@ -26,6 +26,8 @@
   outline: none;
   background-color: transparent;
   overflow: hidden;
+
+  transition: border-color 0.4s ease-in-out;
 }
 
 .memory-card img {
@@ -48,4 +50,8 @@
 .memory-card:hover {
   border: 2px solid var(--gh-color-5);
   background-color: var(--gh-color-2);
+}
+
+.memory-card.matched {
+  border-color: var(--gh-color-6);
 }

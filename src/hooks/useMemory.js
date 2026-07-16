@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer } from 'react'
+import React, { useCallback, useEffect, useReducer } from 'react'
 import { GAMES_DATA } from '../constants/gamesData'
 import { useUserContext } from './useUserContext'
 
@@ -13,7 +13,7 @@ const memoryReducer = (state, action) => {
   switch (action.type) {
     case 'INITIALIZE_GAME':
       return {
-        cards: action.payload,
+        cards: action.payload.cardsShuffled,
         moves: 0,
         matches: 0,
         isGameActive: false
@@ -48,11 +48,15 @@ const memoryReducer = (state, action) => {
       }
 
       newCards[cardIndex] = { ...clickedCard, isFlipped: true }
+
       const isMatch = newCards[waitingCardIndex].id === clickedCard.id
 
       if (isMatch) {
         newCards[cardIndex].isMatched = true
-        newCards[waitingCardIndex].isMatched = true
+        newCards[waitingCardIndex] = {
+          ...newCards[waitingCardIndex],
+          isMatched: true
+        }
 
         return {
           ...state,
@@ -66,6 +70,23 @@ const memoryReducer = (state, action) => {
           moves: state.moves + 1,
           cards: newCards
         }
+      }
+    }
+
+    case 'UNFLIP_CARDS': {
+      const resetedCards = state.cards.map((card) =>
+        card.isMatched ? card : { ...card, isFlipped: false }
+      )
+      return {
+        ...state,
+        cards: resetedCards
+      }
+    }
+
+    case 'GAME_OVER': {
+      return {
+        ...state,
+        isGameActive: false
       }
     }
 
@@ -97,19 +118,49 @@ const useMemory = () => {
 
     const cardsShuffled = [...duplicatedCards].sort(() => Math.random() - 0.5)
 
-    dispatch({ type: 'INITIALIZE_GAME', payload: cardsShuffled })
+    dispatch({
+      type: 'INITIALIZE_GAME',
+      payload: { cardsShuffled }
+    })
   }
 
   const handleReset = () => {
     initializeGame()
   }
 
+  const handleTimeOut = useCallback(() => {
+    //? Usamos useCallback para mantener la misma referencia de memoria de esta función.
+    //? Sin esto, cada clic en una carta recrearía la función, provocando que el useEffect del Timer destruyera y reiniciara el setInterval constantemente (congelando el tiempo).
+    dispatch({ type: 'GAME_OVER' })
+  }, [])
+
   const handleClick = (cardIndex) => {
+    if (!gameState.isGameActive && gameState.moves > 0) return
+
+    const activeFlips = gameState.cards.filter(
+      (card) => card.isFlipped && !card.isMatched
+    ).length
+
+    if (activeFlips >= 2) return
+
+    dispatch({ type: 'FLIP_CARD', payload: cardIndex })
+
     if (!gameState.isGameActive) {
       dispatch({ type: 'START_GAME' })
     }
 
-    dispatch({ type: 'FLIP_CARD', payload: cardIndex })
+    if (activeFlips === 1) {
+      const firstCard = gameState.cards.find(
+        (card) => card.isFlipped && !card.isMatched
+      )
+      const secondCard = gameState.cards[cardIndex]
+
+      if (firstCard && firstCard.id !== secondCard.id) {
+        setTimeout(() => {
+          dispatch({ type: 'UNFLIP_CARDS' })
+        }, 900)
+      }
+    }
   }
 
   useEffect(() => {
@@ -125,6 +176,7 @@ const useMemory = () => {
     isGameActive: gameState.isGameActive,
     initializeGame,
     handleReset,
+    handleTimeOut,
     handleClick
   }
 }
