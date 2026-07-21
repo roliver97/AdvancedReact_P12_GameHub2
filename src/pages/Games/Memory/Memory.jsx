@@ -9,11 +9,7 @@ import MemoryGrid from './MemoryGrid/MemoryGrid'
 import useMemory from '../../../hooks/useMemory'
 import GameOverlay from '../../../components/GameBoard/GameOverlay/GameOverlay'
 import Timer from '../../../components/GameBoard/Timer/Timer'
-
-const TIMER_BY_DIFFICULTY = {
-  easy: 60,
-  hard: 5
-}
+import { formatTime } from '../../../utils/formatTime'
 
 const Memory = () => {
   const gameData = GAMES_DATA.memory
@@ -25,9 +21,10 @@ const Memory = () => {
     moves,
     winner,
     matches,
-    isGameActive
+    isGameActive,
+    TIMER_BY_DIFFICULTY
   } = useMemory()
-  const { gameMode, gameDifficulty } = useUserContext()
+  const { gameMode, gameDifficulty, gamesStats } = useUserContext()
 
   console.log(
     'GameMode:',
@@ -39,6 +36,8 @@ const Memory = () => {
   )
 
   const initialTime = TIMER_BY_DIFFICULTY[gameDifficulty] || 0
+  const memoryStats = gamesStats.find((game) => game.id === 'memory')
+  const currentBestTime = memoryStats?.bestTime?.[gameDifficulty] ?? null
 
   const gameOverStatus = winner ? 'win' : 'timeout'
 
@@ -61,7 +60,12 @@ const Memory = () => {
             ),
             className: 'memo-time'
           },
-          { label: 'Best Time', value: '?', className: 'memo-bestTime' }
+          {
+            label: 'Best Time',
+            value:
+              currentBestTime !== null ? formatTime(currentBestTime) : '--:--',
+            className: 'memo-bestTime'
+          }
         ]
       : [
           { label: 'Moves', value: '?', className: 'memo-moves' },

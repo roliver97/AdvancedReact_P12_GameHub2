@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
+import { formatTime } from '../../../utils/formatTime'
 
 const Timer = ({ initialTime, isGameActive, onTimeOut }) => {
   const [seconds, setSeconds] = useState(initialTime)
@@ -30,7 +31,7 @@ const Timer = ({ initialTime, isGameActive, onTimeOut }) => {
     return () => clearInterval(interval)
   }, [isGameActive])
 
-  return <span className='timer-number'>{seconds}s</span>
+  return <span className='timer-number'>{formatTime(seconds)}</span>
 }
 
 export default Timer

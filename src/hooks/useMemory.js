@@ -2,12 +2,18 @@ import React, { useCallback, useEffect, useReducer } from 'react'
 import { GAMES_DATA } from '../constants/gamesData'
 import { useUserContext } from './useUserContext'
 
+const TIMER_BY_DIFFICULTY = {
+  easy: 30,
+  hard: 60
+}
+
 const initialState = {
   cards: [],
   moves: 0,
   matches: 0,
   isGameActive: false,
-  winner: null
+  winner: null,
+  startTime: null
 }
 
 const memoryReducer = (state, action) => {
@@ -18,13 +24,15 @@ const memoryReducer = (state, action) => {
         moves: 0,
         matches: 0,
         isGameActive: false,
-        winner: null
+        winner: null,
+        startTime: null
       }
 
     case 'START_GAME':
       return {
         ...state,
-        isGameActive: true
+        isGameActive: true,
+        startTime: Date.now()
       }
 
     case 'FLIP_CARD': {
@@ -175,12 +183,19 @@ const useMemory = () => {
     if (gameState.isGameActive && gameState.matches === pairsNeededToWin) {
       dispatch({ type: 'GAME_OVER', payload: true })
       const score = gameDifficulty === 'hard' ? 150 : 100
-      saveGameResults('memory', score)
-      saveGameResults('memory', score)
+
+      const secondsElapsed = Math.floor(
+        (Date.now() - gameState.startTime) / 1000
+      )
+      const totalInitialTime = TIMER_BY_DIFFICULTY[gameDifficulty]
+      const timeRemaining = Math.max(0, totalInitialTime - secondsElapsed)
+
+      saveGameResults('memory', score, timeRemaining, gameDifficulty)
     }
   }, [
     gameState.matches,
     gameState.isGameActive,
+    gameState.startTime,
     gameDifficulty,
     gameMode,
     saveGameResults
@@ -201,7 +216,8 @@ const useMemory = () => {
     initializeGame,
     handleReset,
     handleTimeOut,
-    handleClick
+    handleClick,
+    TIMER_BY_DIFFICULTY
   }
 }
 

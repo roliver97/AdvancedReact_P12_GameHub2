@@ -18,7 +18,12 @@ export const UserProvider = ({ children }) => {
   const [gameDifficulty, setGameDifficulty] = useState(null) // for Player vs CPU === easy or hard
   const [lastGameModePlayed, setLastGameModePlayed] = useState(null)
 
-  const saveGameResults = (gameId, pointsGained) => {
+  const saveGameResults = (
+    gameId,
+    pointsGained,
+    timeRemaining = null,
+    difficulty = 'easy'
+  ) => {
     const today = new Date().toLocaleDateString()
     const targetGame = gamesStats.find((g) => g.id === gameId)
     if (!targetGame) return
@@ -39,10 +44,27 @@ export const UserProvider = ({ children }) => {
     setGamesStats((prev) =>
       prev.map((game) => {
         if (game.id === gameId) {
+          const currentBestTimes =
+            typeof game.bestTime === 'object' && game.bestTime !== null
+              ? game.bestTime
+              : { easy: null, hard: null }
+
+          let updatedDifficultyTime = currentBestTimes[difficulty] ?? null
+
+          if (timeRemaining !== null) {
+            updatedDifficultyTime =
+              currentBestTimes[difficulty] !== null
+                ? Math.max(currentBestTimes[difficulty], timeRemaining)
+                : timeRemaining
+          }
           return {
             ...game,
             score: game.score + pointsGained,
-            played: game.played + 1
+            played: game.played + 1,
+            bestTime: {
+              ...currentBestTimes,
+              [difficulty]: updatedDifficultyTime
+            }
           }
         }
         return game
