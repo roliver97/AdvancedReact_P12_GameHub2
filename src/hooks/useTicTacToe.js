@@ -81,8 +81,10 @@ const useTicTacToe = () => {
           return { ...prevScores, oWins: prevScores.oWins + 1 }
         return { ...prevScores, draws: prevScores.draws + 1 }
       })
-      if (gameWinner === 'X') {
+      if (gameWinner === 'X' && gameDifficulty === 'easy') {
         saveGameResults('tictactoe', 100)
+      } else if (gameWinner === 'X' && gameDifficulty === 'hard') {
+        saveGameResults('tictactoe', 150)
       } else if (gameWinner === 'Tie') {
         saveGameResults('tictactoe', 20)
       }

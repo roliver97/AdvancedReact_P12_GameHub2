@@ -1,0 +1,26 @@
+.game-over-overlay {
+  cursor: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gh-space-xxl);
+  background-color: rgba(255, 60, 60, 0.2);
+}
+
+.game-over-overlay.win {
+  background-color: rgba(60, 255, 70, 0.2);
+}
+
+.game-over-overlay .modal-content {
+  border-color: var(--gh-color-5);
+  text-shadow: none;
+  background-color: var(--gh-color-2);
+}
+
+.game-over-overlay .game-over-title {
+  font-size: 3rem;
+}
+
+.game-over-overlay .btn-try-again {
+  background-color: var(--gh-color-4);
+  justify-content: center;
+}

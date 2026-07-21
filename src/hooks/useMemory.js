@@ -6,7 +6,8 @@ const initialState = {
   cards: [],
   moves: 0,
   matches: 0,
-  isGameActive: false
+  isGameActive: false,
+  winner: null
 }
 
 const memoryReducer = (state, action) => {
@@ -16,7 +17,8 @@ const memoryReducer = (state, action) => {
         cards: action.payload.cardsShuffled,
         moves: 0,
         matches: 0,
-        isGameActive: false
+        isGameActive: false,
+        winner: null
       }
 
     case 'START_GAME':
@@ -84,9 +86,12 @@ const memoryReducer = (state, action) => {
     }
 
     case 'GAME_OVER': {
+      const isWinner = action.payload
+
       return {
         ...state,
-        isGameActive: false
+        isGameActive: false,
+        winner: isWinner ?? false
       }
     }
 
@@ -97,7 +102,7 @@ const memoryReducer = (state, action) => {
 
 const useMemory = () => {
   const [gameState, dispatch] = useReducer(memoryReducer, initialState)
-  const { gameDifficulty, gameMode } = useUserContext()
+  const { gameDifficulty, gameMode, saveGameResults } = useUserContext()
 
   const initializeGame = () => {
     const catalog = GAMES_DATA.memory.cardsCatalog
@@ -131,7 +136,7 @@ const useMemory = () => {
   const handleTimeOut = useCallback(() => {
     //? Usamos useCallback para mantener la misma referencia de memoria de esta función.
     //? Sin esto, cada clic en una carta recrearía la función, provocando que el useEffect del Timer destruyera y reiniciara el setInterval constantemente (congelando el tiempo).
-    dispatch({ type: 'GAME_OVER' })
+    dispatch({ type: 'GAME_OVER', payload: false })
   }, [])
 
   const handleClick = (cardIndex) => {
@@ -143,11 +148,11 @@ const useMemory = () => {
 
     if (activeFlips >= 2) return
 
-    dispatch({ type: 'FLIP_CARD', payload: cardIndex })
-
     if (!gameState.isGameActive) {
       dispatch({ type: 'START_GAME' })
     }
+
+    dispatch({ type: 'FLIP_CARD', payload: cardIndex })
 
     if (activeFlips === 1) {
       const firstCard = gameState.cards.find(
@@ -164,6 +169,24 @@ const useMemory = () => {
   }
 
   useEffect(() => {
+    const pairsNeededToWin =
+      gameDifficulty === 'hard' || gameMode === 'memo-zenMode' ? 12 : 6
+
+    if (gameState.isGameActive && gameState.matches === pairsNeededToWin) {
+      dispatch({ type: 'GAME_OVER', payload: true })
+      const score = gameDifficulty === 'hard' ? 150 : 100
+      saveGameResults('memory', score)
+      saveGameResults('memory', score)
+    }
+  }, [
+    gameState.matches,
+    gameState.isGameActive,
+    gameDifficulty,
+    gameMode,
+    saveGameResults
+  ])
+
+  useEffect(() => {
     if (!gameMode || (gameMode && gameDifficulty === 'pending')) return
     initializeGame()
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -174,6 +197,7 @@ const useMemory = () => {
     moves: gameState.moves,
     matches: gameState.matches,
     isGameActive: gameState.isGameActive,
+    winner: gameState.winner,
     initializeGame,
     handleReset,
     handleTimeOut,

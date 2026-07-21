@@ -12,7 +12,7 @@ const GameMenu = ({ gameDifficulty, gameData }) => {
           <h3>Select Game Mode</h3>
           <div className='menu-buttons'>
             <button
-              className='btn-menu'
+              className='btn-menu btn-gameBoard'
               onClick={() => {
                 selectGameMode(gameData.modeOptions.firstMode.value)
                 selectGameDifficulty('pending')
@@ -26,7 +26,7 @@ const GameMenu = ({ gameDifficulty, gameData }) => {
               </span>
             </button>
             <button
-              className='btn-menu'
+              className='btn-menu btn-gameBoard'
               onClick={() => {
                 selectGameMode(gameData.modeOptions.secondMode.value)
               }}
@@ -45,7 +45,7 @@ const GameMenu = ({ gameDifficulty, gameData }) => {
           <h3>Select Game Difficulty</h3>
           <div className='menu-buttons'>
             <button
-              className='btn-menu'
+              className='btn-menu btn-gameBoard'
               onClick={() => {
                 selectGameDifficulty('easy')
               }}
@@ -58,7 +58,7 @@ const GameMenu = ({ gameDifficulty, gameData }) => {
               </span>
             </button>
             <button
-              className='btn-menu'
+              className='btn-menu btn-gameBoard'
               onClick={() => {
                 selectGameDifficulty('hard')
               }}

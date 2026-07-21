@@ -12,7 +12,7 @@ import Timer from '../../../components/GameBoard/Timer/Timer'
 
 const TIMER_BY_DIFFICULTY = {
   easy: 60,
-  hard: 45
+  hard: 5
 }
 
 const Memory = () => {
@@ -23,6 +23,7 @@ const Memory = () => {
     handleClick,
     handleTimeOut,
     moves,
+    winner,
     matches,
     isGameActive
   } = useMemory()
@@ -39,8 +40,7 @@ const Memory = () => {
 
   const initialTime = TIMER_BY_DIFFICULTY[gameDifficulty] || 0
 
-  const totalPairs = cards.length / 2
-  const isTimeOut = !isGameActive && moves > 0 && matches < totalPairs
+  const gameOverStatus = winner ? 'win' : 'timeout'
 
   let scoreboardData =
     gameMode === 'memo-timeAttack'
@@ -76,7 +76,12 @@ const Memory = () => {
         <>
           <ScoreBoard data={scoreboardData} />
           <MemoryGrid cards={cards} onCardClick={handleClick} />
-          {isTimeOut && <GameOverlay onReset={handleReset} />}
+          {winner !== null && (
+            <GameOverlay
+              onReset={handleReset}
+              gameOverStatus={gameOverStatus}
+            />
+          )}
         </>
       )}
     </GameBoard>
