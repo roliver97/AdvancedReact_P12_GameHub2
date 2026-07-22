@@ -165,12 +165,14 @@
 
 .welcome-input {
   padding: var(--gh-btn-padding-xs);
+  border-radius: var(--gh-radius-m);
+  border: 2px solid var(--gh-color-5);
   font-weight: 400;
   font-size: 1rem;
 }
 
 .welcome-input:focus {
-  outline: 1px solid var(--gh-color-1);
+  outline: 2px solid var(--gh-color-1);
 }
 
 .welcome-button {

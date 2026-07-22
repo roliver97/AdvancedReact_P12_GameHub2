@@ -1,15 +1,43 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './Sidebar.css'
 import { useUserContext } from '../../hooks/useUserContext'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 
 const Sidebar = ({ isOpen, toggleSidebar }) => {
   const { playerInfo, navigateToGame, activeGame } = useUserContext()
+  const [isSlowTransition, setIsSlowTransition] = useState(false)
+  const [loadingGameAnimation, setLoadingGameAnimation] = useState(null)
   console.log('Soy Sidebar y me renderizo', `MI JUEGO ACTIVO ES ${activeGame}`)
+  const navigate = useNavigate()
+
+  const handleGameClick = (e, gameName) => {
+    e.preventDefault() // Recogemos el evento (e) y hacemos preventDefault porque los Navlinks de React Router están configurados para navegar de manera instantanea, pero queremos que espere a que termine la transición visual de "Loading Game".
+    setLoadingGameAnimation(gameName)
+
+    if (isOpen) {
+      setIsSlowTransition(true)
+    }
+
+    setTimeout(() => {
+      setLoadingGameAnimation(null)
+      navigate(`/${gameName}`)
+    }, 400)
+
+    setTimeout(() => {
+      toggleSidebar()
+      navigateToGame(gameName)
+    }, 600)
+
+    setTimeout(() => {
+      setIsSlowTransition(false)
+    }, 900)
+  }
 
   return (
     <aside
-      className={`sidebar ${!isOpen ? 'sidebar-collapsed' : ''} custom-scrollbar-inverted`}
+      className={`sidebar ${!isOpen ? 'sidebar-collapsed' : ''} ${
+        isSlowTransition ? 'slow-transition' : ''
+      } custom-scrollbar-inverted`}
     >
       <button className='close-sidebar-btn' onClick={toggleSidebar}>
         <img
@@ -34,18 +62,18 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
         <div className='sidebar-nav-group'>
           <h2 className='sidebar-group-title'>Games</h2>
           <NavLink
-            className='sidebar-link'
+            className={`sidebar-link ${loadingGameAnimation === 'tictactoe' ? 'game-loading-neon' : ''}`}
             to='tictactoe'
-            onClick={() => navigateToGame('tictactoe')}
+            onClick={(e) => handleGameClick(e, 'tictactoe')}
           >
             {' '}
             <img src='./assets/icons/sidebar/tictactoe.svg' alt='TicTacToe' />
             <span>Tic Tac Toe</span>
           </NavLink>
           <NavLink
-            className='sidebar-link'
+            className={`sidebar-link ${loadingGameAnimation === 'memory' ? 'game-loading-neon' : ''}`}
             to='memory'
-            onClick={() => navigateToGame('memory')}
+            onClick={(e) => handleGameClick(e, 'memory')}
           >
             {' '}
             <img src='./assets/icons/sidebar/memory.png' alt='Memory' />

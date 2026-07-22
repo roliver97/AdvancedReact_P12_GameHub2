@@ -27,13 +27,21 @@
   overflow-y: auto;
 }
 
-.sidebar-collapsed {
+.sidebar.sidebar-collapsed {
   width: 0px;
   padding-left: 0px;
   padding-right: 0px;
   transform: translateX(-100%);
   opacity: 0;
   box-shadow: none;
+}
+
+.sidebar.slow-transition {
+  transition:
+    width 1.5s cubic-bezier(0.25, 1, 0.5, 1),
+    transform 1.5s cubic-bezier(0.25, 1, 0.5, 1),
+    padding 2s ease,
+    opacity 1.5s ease;
 }
 
 .close-sidebar-btn {
@@ -167,6 +175,32 @@
   background-color: var(--gh-color-3);
   border: 1px solid var(--gh-accent);
   color: var(--gh-color-7);
+}
+
+.sidebar:has(.sidebar-link.game-loading-neon) .sidebar-link.active {
+  background-color: transparent;
+  border: none;
+  color: white;
+}
+
+.sidebar-link.game-loading-neon {
+  animation: neonPulse 0.1s infinite alternate ease-in-out;
+}
+
+@keyframes neonPulse {
+  from {
+    outline: 0px solid var(--gh-color-7);
+    outline-offset: -1px;
+    box-shadow: none;
+    opacity: 0.5;
+  }
+  to {
+    outline: 2px solid var(--gh-color-7);
+    outline-offset: -1px;
+    box-shadow: 0 0 8px var(--gh-accent);
+    opacity: 1;
+    background-color: var(--gh-color-2);
+  }
 }
 
 .sidebar-nav img {

@@ -1,12 +1,12 @@
 .game-layout {
   width: 100%;
-
-  height: 100%;
+  flex: 1;
   padding: var(--gh-space-xxl);
   display: flex;
   flex-direction: column;
   justify-self: center;
   align-items: center;
+  align-self: center;
 
   gap: var(--gh-space-l);
   overflow-y: auto;
@@ -15,12 +15,12 @@
 }
 
 .game-header,
-.game-board,
-.game-footer {
+.game-board {
   width: 60%;
-  max-width: 800px;
+}
 
-  min-width: 400px;
+.game-footer {
+  width: 100%;
 }
 
 .game-header {
