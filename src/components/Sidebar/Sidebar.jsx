@@ -1,16 +1,22 @@
 import React, { useState } from 'react'
 import './Sidebar.css'
 import { useUserContext } from '../../hooks/useUserContext'
-import { NavLink, useNavigate } from 'react-router-dom'
+import { NavLink, useLocation, useNavigate } from 'react-router-dom'
 
 const Sidebar = ({ isOpen, toggleSidebar }) => {
   const { playerInfo, navigateToGame, activeGame } = useUserContext()
   const [isSlowTransition, setIsSlowTransition] = useState(false)
   const [loadingGameAnimation, setLoadingGameAnimation] = useState(null)
   console.log('Soy Sidebar y me renderizo', `MI JUEGO ACTIVO ES ${activeGame}`)
+
   const navigate = useNavigate()
+  const location = useLocation()
 
   const handleGameClick = (e, gameName) => {
+    if (activeGame === gameName || location.pathname === `/${gameName}`) {
+      return navigateToGame(gameName)
+    }
+
     e.preventDefault() // Recogemos el evento (e) y hacemos preventDefault porque los Navlinks de React Router están configurados para navegar de manera instantanea, pero queremos que espere a que termine la transición visual de "Loading Game".
     setLoadingGameAnimation(gameName)
 

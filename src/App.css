@@ -6,11 +6,12 @@
 main {
   flex: 1;
   display: flex;
-  flex-direction: column;
+
   height: 100%;
 }
 
 .main-child {
+  flex: 1;
   padding: var(--gh-space-xl) var(--gh-space-xxl);
 }
 

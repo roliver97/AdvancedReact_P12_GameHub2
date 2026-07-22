@@ -1,3 +1,29 @@
+const animalNames = [
+  'penguin',
+  'sloth',
+  'elephants',
+  'tiger',
+  'chamaleon',
+  'lynx',
+  'polar-bear',
+  'giraffe',
+  'guanaco',
+  'jaguar',
+  'red-panda',
+  'zebra',
+  'lemur',
+  'fox',
+  'orangutan',
+  'sheeps',
+  'ajolote',
+  'baboon'
+]
+
+const cardsCatalog = animalNames.map((animal) => ({
+  id: animal,
+  icon: `/assets/images/memory/${animal}.webp`
+}))
+
 export const GAMES_DATA = {
   tictactoe: {
     id: 'tictactoe',
@@ -47,20 +73,7 @@ export const GAMES_DATA = {
       easy: { icon: '🟩', text: 'Easy' },
       hard: { icon: '🟥', text: 'Hard' }
     },
-    cardsCatalog: [
-      { id: 'beluga', icon: '/assets/images/memory/beluga.webp' },
-      { id: 'crane', icon: '/assets/images/memory/crane.webp' },
-      { id: 'fish', icon: '/assets/images/memory/fish.webp' },
-      { id: 'flamingo', icon: '/assets/images/memory/flamingo.webp' },
-      { id: 'giraffe', icon: '/assets/images/memory/giraffe.webp' },
-      { id: 'gorilla', icon: '/assets/images/memory/gorilla.webp' },
-      { id: 'hippo', icon: '/assets/images/memory/hippo.webp' },
-      { id: 'hyena', icon: '/assets/images/memory/hyena.webp' },
-      { id: 'kingfisher', icon: '/assets/images/memory/kingfisher.webp' },
-      { id: 'leopard', icon: '/assets/images/memory/leopard.webp' },
-      { id: 'tiger', icon: '/assets/images/memory/tiger.webp' },
-      { id: 'zebra', icon: '/assets/images/memory/zebra.webp' }
-    ]
+    cardsCatalog: cardsCatalog
   },
   rockpaperscissors: {
     id: 'rockpaperscissors',

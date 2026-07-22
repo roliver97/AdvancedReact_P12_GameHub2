@@ -97,6 +97,25 @@ export const UserProvider = ({ children }) => {
     }
   }
 
+  const resetBestTime = (gameId, currentDifficulty) => {
+    setGamesStats((prev) =>
+      prev.map((game) => {
+        if (game.id === gameId) {
+          const currentBestTimes =
+            typeof game.bestTime === 'object' && game.bestTime !== null
+              ? game.bestTime
+              : { easy: null, hard: null }
+
+          return {
+            ...game,
+            bestTime: { ...currentBestTimes, [currentDifficulty]: null }
+          }
+        }
+        return game
+      })
+    )
+  }
+
   return (
     <UserContext.Provider
       value={{
@@ -117,7 +136,8 @@ export const UserProvider = ({ children }) => {
         navigateToGame,
         selectGameMode,
         selectGameDifficulty,
-        changeGameMode
+        changeGameMode,
+        resetBestTime
       }}
     >
       {children}

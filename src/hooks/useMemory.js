@@ -3,7 +3,7 @@ import { GAMES_DATA } from '../constants/gamesData'
 import { useUserContext } from './useUserContext'
 
 const TIMER_BY_DIFFICULTY = {
-  easy: 30,
+  easy: 40,
   hard: 60
 }
 
@@ -117,7 +117,7 @@ const useMemory = () => {
     const randomizedCatalog = [...catalog].sort(() => Math.random() - 0.5)
 
     const cardsNeeded =
-      gameDifficulty === 'hard' || gameMode === 'memo-zenMode' ? 12 : 6
+      gameDifficulty === 'hard' || gameMode === 'memo-zenMode' ? 15 : 10
     const selectedCards = randomizedCatalog.slice(0, cardsNeeded)
 
     const duplicatedCards = [...selectedCards, ...selectedCards].map(
@@ -178,7 +178,7 @@ const useMemory = () => {
 
   useEffect(() => {
     const pairsNeededToWin =
-      gameDifficulty === 'hard' || gameMode === 'memo-zenMode' ? 12 : 6
+      gameDifficulty === 'hard' || gameMode === 'memo-zenMode' ? 15 : 10
 
     if (gameState.isGameActive && gameState.matches === pairsNeededToWin) {
       dispatch({ type: 'GAME_OVER', payload: true })

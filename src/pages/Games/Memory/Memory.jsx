@@ -24,7 +24,8 @@ const Memory = () => {
     isGameActive,
     TIMER_BY_DIFFICULTY
   } = useMemory()
-  const { gameMode, gameDifficulty, gamesStats } = useUserContext()
+  const { gameMode, gameDifficulty, gamesStats, resetBestTime } =
+    useUserContext()
 
   console.log(
     'GameMode:',
@@ -68,12 +69,20 @@ const Memory = () => {
           }
         ]
       : [
-          { label: 'Moves', value: '?', className: 'memo-moves' },
-          { label: 'Matches', value: '?', className: 'memo-matches' }
+          { label: 'Moves', value: moves, className: 'memo-moves' },
+          { label: 'Matches', value: matches, className: 'memo-matches' }
         ]
 
+  const handleResetScoreboard = () => {
+    ;(resetBestTime('memory', gameDifficulty), handleReset())
+  }
+
   return (
-    <GameBoard gameData={gameData} onReset={handleReset}>
+    <GameBoard
+      gameData={gameData}
+      onReset={handleReset}
+      onResetScoreboard={handleResetScoreboard}
+    >
       {!gameMode || gameDifficulty === 'pending' ? (
         <GameMenu gameDifficulty={gameDifficulty} gameData={gameData} />
       ) : (
