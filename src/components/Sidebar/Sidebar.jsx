@@ -11,9 +11,11 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
 
   const navigate = useNavigate()
   const location = useLocation()
+  const checkIsMobileOnClick = () => window.innerWidth <= 1024
 
   const handleGameClick = (e, gameName) => {
-    if (activeGame === gameName || location.pathname === `/${gameName}`) {
+    if (location.pathname === `/${gameName}`) {
+      if (checkIsMobileOnClick()) toggleSidebar()
       return navigateToGame(gameName)
     }
 
@@ -37,6 +39,10 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
     setTimeout(() => {
       setIsSlowTransition(false)
     }, 900)
+  }
+
+  const handleMenuClick = () => {
+    if (checkIsMobileOnClick()) toggleSidebar()
   }
 
   return (
@@ -88,15 +94,23 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
         </div>
         <div className='sidebar-nav-group'>
           <h2 className='sidebar-group-title'>Menu</h2>
-          <NavLink className='sidebar-link' to='/'>
+          <NavLink className='sidebar-link' to='/' onClick={handleMenuClick}>
             <img src='./assets/icons/sidebar/home.png' alt='Dashboard' />
             <span>Dashboard</span>
           </NavLink>
-          <NavLink className='sidebar-link' to='/leaderboard'>
+          <NavLink
+            className='sidebar-link'
+            to='/leaderboard'
+            onClick={handleMenuClick}
+          >
             <img src='./assets/icons/dashboard/trophy.webp' alt='Leaderboard' />
             <span>Leaderboard</span>
           </NavLink>
-          <NavLink className='sidebar-link' to='/profile'>
+          <NavLink
+            className='sidebar-link'
+            to='/profile'
+            onClick={handleMenuClick}
+          >
             <img src='./assets/icons/sidebar/profile.webp' alt='Profile' />
             Profile
           </NavLink>

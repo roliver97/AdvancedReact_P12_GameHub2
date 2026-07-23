@@ -211,3 +211,37 @@
   font-size: 0.75rem;
   color: var(--gh-bg-main);
 }
+
+/*!  MEDIA  */
+@media (max-width: 1800px) {
+  /* DESKTOP or less */
+}
+
+@media (max-width: 1024px) {
+  /* LAPTOP - TABLET or less */
+  .sidebar {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 1000;
+    justify-content: start;
+  }
+
+  .sidebar-nav {
+    flex: none;
+  }
+
+  .sidebar-footer {
+    flex: 1;
+    align-content: end;
+    padding-bottom: 10px;
+  }
+}
+
+@media (max-width: 769px) {
+  /* SMALL TABLET or less */
+}
+
+@media (max-width: 480px) {
+  /* MOBILE or less */
+}
