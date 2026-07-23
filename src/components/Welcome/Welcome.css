@@ -81,7 +81,7 @@
   z-index: 10000;
   border-radius: var(--gh-radius-l);
 
-  overflow: hidden;
+  overflow: auto;
 
   background-color: var(--gh-color-3);
   border: 2px solid var(--gh-color-4);
@@ -166,13 +166,14 @@
 .welcome-input {
   padding: var(--gh-btn-padding-xs);
   border-radius: var(--gh-radius-m);
-  border: 2px solid var(--gh-color-5);
+  border: 2px solid var(--gh-color-4);
+  outline: 1px solid var(--gh-color-1);
   font-weight: 400;
   font-size: 1rem;
 }
 
 .welcome-input:focus {
-  outline: 2px solid var(--gh-color-1);
+  outline: 1px solid var(--gh-color-6);
 }
 
 .welcome-button {
