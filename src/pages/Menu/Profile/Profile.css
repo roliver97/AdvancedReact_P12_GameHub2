@@ -77,8 +77,56 @@
 
 .profile-header-title-container {
   display: flex;
+  gap: var(--gh-space-m);
 }
 
 .profile-header-title-container img {
   width: 35px;
+}
+
+/*!  MEDIA  */
+@media (max-width: 1800px) {
+  /* DESKTOP or less */
+}
+
+@media (max-width: 1024px) {
+  /* LAPTOP - TABLET or less */
+}
+
+@media (max-width: 769px) {
+  /* SMALL TABLET or less */
+  .profile-grid {
+    flex-direction: column;
+    text-align: center;
+    gap: var(--gh-space-l);
+  }
+  .profile-card {
+    gap: 0;
+  }
+  .profile-card h2 {
+    font-size: 1.1rem;
+  }
+  .profile-card h3,
+  .profile-card span {
+    font-size: 0.8rem;
+  }
+  .profile-card-title {
+    padding: var(--gh-space-m);
+  }
+  .statistics-card,
+  .player-info-card {
+    gap: var(--gh-space-l);
+    padding: 0;
+    padding-top: var(--gh-space-m);
+  }
+  .player-info-card div,
+  .statistics-card div {
+    justify-content: space-between;
+    flex-direction: row;
+    gap: var(--gh-space-s);
+  }
+}
+
+@media (max-width: 480px) {
+  /* MOBILE or less */
 }

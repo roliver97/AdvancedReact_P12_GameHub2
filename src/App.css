@@ -33,9 +33,8 @@ main {
   border: none;
   cursor: pointer;
 
-  animation: fadeInBtn 0.4s ease forwards;
-  animation-delay: 0.2s;
-  opacity: 0;
+  animation: fadeInBtn 0.6s ease-in;
+  opacity: 1;
 }
 
 @keyframes fadeInBtn {

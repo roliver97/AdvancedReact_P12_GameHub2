@@ -18,7 +18,7 @@ const Dashboard = () => {
           menu and start breaking records
         </p>
       </div>
-      <div className='dashboard-content'>
+      <div className='dashboard-content custom-scrollbar'>
         <div className='dashboard-markers'>
           <div className='dashboard-games-marker'>
             <img

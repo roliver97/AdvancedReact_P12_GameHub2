@@ -234,6 +234,7 @@
   .leaderboard-card-position {
     width: 55px;
     height: 55px;
+    border-right: none;
   }
 }
 

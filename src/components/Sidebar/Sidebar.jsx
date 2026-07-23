@@ -21,24 +21,20 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
 
     e.preventDefault() // Recogemos el evento (e) y hacemos preventDefault porque los Navlinks de React Router están configurados para navegar de manera instantanea, pero queremos que espere a que termine la transición visual de "Loading Game".
     setLoadingGameAnimation(gameName)
-
-    if (isOpen) {
-      setIsSlowTransition(true)
-    }
+    setIsSlowTransition(true)
 
     setTimeout(() => {
       setLoadingGameAnimation(null)
       navigate(`/${gameName}`)
+      navigateToGame(gameName)
+      if (isOpen) {
+        toggleSidebar()
+      }
     }, 400)
 
     setTimeout(() => {
-      toggleSidebar()
-      navigateToGame(gameName)
-    }, 600)
-
-    setTimeout(() => {
       setIsSlowTransition(false)
-    }, 900)
+    }, 1000)
   }
 
   const handleMenuClick = () => {
@@ -51,14 +47,16 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
         isSlowTransition ? 'slow-transition' : ''
       } custom-scrollbar-inverted`}
     >
-      <button className='close-sidebar-btn' onClick={toggleSidebar}>
-        <img
-          src='./assets/icons/arrow-left.svg'
-          alt='Close Sidebar Arrow Icon'
-        />
-        <span>HIDE</span>
-        <span>MENU</span>
-      </button>
+      {isOpen && (
+        <button className='close-sidebar-btn' onClick={toggleSidebar}>
+          <img
+            src='./assets/icons/arrow-left.svg'
+            alt='Close Sidebar Arrow Icon'
+          />
+          <span>HIDE</span>
+          <span>MENU</span>
+        </button>
+      )}
       <header className='sidebar-header'>
         <div className='sidebar-brand'>
           <img className='sidebar-logo' src='./assets/icons/logo.svg' alt='' />
