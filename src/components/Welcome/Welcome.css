@@ -97,7 +97,7 @@
   z-index: -1;
 
   background-image:
-    linear-gradient(rgba(26, 14, 29, 0.85), rgba(26, 14, 26, 0.9)),
+    linear-gradient(#583948d2, rgba(26, 14, 26, 0.9)),
     url('/assets/images/bg-welcome.jpeg');
   background-size: cover;
   background-position: center;
@@ -166,14 +166,14 @@
 .welcome-input {
   padding: var(--gh-btn-padding-xs);
   border-radius: var(--gh-radius-m);
-  border: 2px solid var(--gh-color-4);
+  border: 2px solid var(--gh-color-5);
   outline: 1px solid var(--gh-color-1);
   font-weight: 400;
   font-size: 1rem;
 }
 
 .welcome-input:focus {
-  outline: 1px solid var(--gh-color-6);
+  border: 2px solid var(--gh-color-6);
 }
 
 .welcome-button {
