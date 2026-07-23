@@ -132,3 +132,23 @@
   font-weight: 600;
   color: var(--gh-accent);
 }
+
+/*!  MEDIA  */
+@media (max-width: 1800px) {
+  /* DESKTOP or less */
+}
+
+@media (max-width: 1024px) {
+  /* LAPTOP - TABLET or less */
+}
+
+@media (max-width: 769px) {
+  /* SMALL TABLET or less */
+  .dashboard-markers {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  /* MOBILE or less */
+}

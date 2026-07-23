@@ -25,7 +25,7 @@ const Leaderboard = () => {
           <h2 className='leaderboard-grid-title'>Top Scores</h2>
         </div>
 
-        <div className='leaderboard-grid-cards custom-scrollbar'>
+        <div className='leaderboard-grid-cards'>
           {orderedGames.map((game, index) => {
             const lastGame = recents.find(
               (recentgame) => recentgame.name === game.name

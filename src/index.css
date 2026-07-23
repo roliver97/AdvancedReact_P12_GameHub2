@@ -8,10 +8,10 @@
 
   /* BRANDING COLORS */
   --gh-color-1: #f8fafc;
-  --gh-color-2: #3d2841fd;
-  --gh-color-3: #1a0e1d;
-  --gh-color-4: #523958;
-  --gh-color-5: #977d9e;
+  --gh-color-2: #412839fd;
+  --gh-color-3: #1d0e19;
+  --gh-color-4: #583948;
+  --gh-color-5: #9e7d94;
   --gh-color-6: #fc5f43;
   --gh-color-7: #f7a697;
   --gh-color-8: #578cff;
@@ -194,8 +194,8 @@ input {
 
 .custom-scrollbar::-webkit-scrollbar-track,
 .custom-scrollbar-inverted::-webkit-scrollbar-track {
-  background: transparent;
-  margin: var(--gh-space-s);
+  background-color: transparent;
+  padding: var(--gh-space-s);
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb,

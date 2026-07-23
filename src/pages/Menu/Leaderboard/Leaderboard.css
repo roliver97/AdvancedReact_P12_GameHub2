@@ -18,6 +18,7 @@
 .leaderboard-header-title-container {
   display: flex;
   gap: var(--gh-space-m);
+  align-items: center;
 }
 
 .leaderboard-header-title-container img {
@@ -137,6 +138,9 @@
   display: flex;
   flex-direction: column;
   gap: var(--gh-space-s);
+}
+
+.leaderboard-card-values span {
   text-align: end;
 }
 
@@ -155,4 +159,104 @@
 .leaderboard-card-lastGame-container p {
   font-size: 0.75rem;
   color: var(--gh-color-5);
+}
+
+/*!  MEDIA  */
+@media (max-width: 1800px) {
+  /* DESKTOP or less */
+}
+
+@media (max-width: 1024px) {
+  /* LAPTOP - TABLET or less */
+}
+
+@media (max-width: 769px) {
+  /* SMALL TABLET or less */
+  .leaderboard-header {
+    text-align: center;
+  }
+  .leaderboard-header-title-container {
+    justify-content: center;
+  }
+  .leaderboard-grid-title-container {
+    justify-content: center;
+  }
+  .leaderboard-card {
+    flex-direction: column;
+    gap: 0;
+    padding-right: 0;
+
+    border-bottom: 3px solid var(--gh-color-5);
+  }
+  .leaderboard-card-titles {
+    flex: 1;
+    align-items: end;
+  }
+  .leaderboard-card-info {
+    width: 100%;
+    justify-content: start;
+    border-bottom: 1px solid var(--gh-color-4);
+    padding: var(--gh-space-s) var(--gh-space-m);
+    gap: 0;
+  }
+  .leaderboard-card-values {
+    padding: var(--gh-space-s) var(--gh-space-m);
+    padding-bottom: var(--gh-space-m);
+    width: 100%;
+    align-items: center;
+    gap: var(--gh-space-m);
+  }
+  .leaderboard-card-values > span {
+    order: 2;
+    font-size: 1.4rem;
+    font-weight: 800;
+  }
+  .leaderboard-card-lastGame-container {
+    justify-content: space-between;
+    width: 100%;
+  }
+  .leaderboard-card-position.position-1,
+  .leaderboard-card-position.position-2,
+  .leaderboard-card-position.position-3 {
+    background-color: transparent;
+    z-index: 1;
+    border-right: none;
+  }
+  .leaderboard-card-info:has(.leaderboard-card-position.position-1) {
+    background-color: rgba(207, 186, 0, 0.8);
+  }
+  .leaderboard-card-info:has(.leaderboard-card-position.position-2) {
+    background-color: rgb(83, 83, 83, 0.8);
+  }
+  .leaderboard-card-info:has(.leaderboard-card-position.position-3) {
+    background-color: rgb(138, 90, 0, 0.8);
+  }
+  .leaderboard-card-position {
+    width: 55px;
+    height: 55px;
+  }
+}
+
+@media (max-width: 480px) {
+  /* MOBILE or less */
+
+  .leaderboard-card-position {
+    width: 40px;
+    height: 40px;
+  }
+
+  .leaderboard-card-position img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .leaderboard-card-position span {
+    width: 30px;
+    height: 30px;
+    font-size: 1rem;
+  }
+
+  .leaderboard-card-info {
+    padding: var(--gh-space-xs) var(--gh-space-s);
+  }
 }
