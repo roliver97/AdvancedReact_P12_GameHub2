@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useReducer } from 'react'
 import { GAMES_DATA } from '../constants/gamesData'
-import { useUserContext } from './useUserContext'
+import { useGameContext } from './useGameContext'
 
 const TIMER_BY_DIFFICULTY = {
   easy: 40,
@@ -110,7 +110,7 @@ const memoryReducer = (state, action) => {
 
 const useMemory = () => {
   const [gameState, dispatch] = useReducer(memoryReducer, initialState)
-  const { gameDifficulty, gameMode, saveGameResults } = useUserContext()
+  const { gameDifficulty, gameMode, saveGameResults } = useGameContext()
 
   const initializeGame = () => {
     const catalog = GAMES_DATA.memory.cardsCatalog

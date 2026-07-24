@@ -1,9 +1,9 @@
 import React from 'react'
 import './GameMenu.css'
-import { useUserContext } from '../../../hooks/useUserContext'
+import { useGameContext } from '../../../hooks/useGameContext'
 
 const GameMenu = ({ gameDifficulty, gameData }) => {
-  const { selectGameMode, selectGameDifficulty } = useUserContext()
+  const { selectGameMode, selectGameDifficulty } = useGameContext()
 
   return (
     <>

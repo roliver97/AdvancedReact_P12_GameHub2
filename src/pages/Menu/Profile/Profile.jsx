@@ -1,9 +1,11 @@
 import React from 'react'
 import './Profile.css'
+import { useGameContext } from '../../../hooks/useGameContext'
 import { useUserContext } from '../../../hooks/useUserContext'
 
 const Profile = () => {
-  const { playerInfo, gamesStats } = useUserContext()
+  const { playerInfo } = useUserContext()
+  const { gamesStats } = useGameContext()
 
   const totalGamesPlayed = gamesStats.reduce(
     (acc, game) => acc + game.played,

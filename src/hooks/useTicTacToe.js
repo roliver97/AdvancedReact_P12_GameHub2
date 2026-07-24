@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useUserContext } from './useUserContext'
+import { useGameContext } from './useGameContext'
 import { findBestMove } from '../utils/ticTacToeAI'
 
 export const WINNING_COMBINATIONS = [
@@ -23,7 +23,7 @@ const useTicTacToe = () => {
     oWins: 0,
     draws: 0
   })
-  const { gameMode, gameDifficulty, saveGameResults } = useUserContext()
+  const { gameMode, gameDifficulty, saveGameResults } = useGameContext()
 
   const checkWinner = (board) => {
     for (const combination of WINNING_COMBINATIONS) {

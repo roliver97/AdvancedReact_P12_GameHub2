@@ -1,10 +1,12 @@
 import React from 'react'
 import './Leaderboard.css'
-import { useUserContext } from '../../../hooks/useUserContext'
+import { useGameContext } from '../../../hooks/useGameContext'
 import LeaderboardCard from './components/LeaderboardCard'
+import { useUserContext } from '../../../hooks/useUserContext'
 
 const Leaderboard = () => {
-  const { playerInfo, gamesStats, recents } = useUserContext()
+  const { playerInfo } = useUserContext()
+  const { gamesStats, recents } = useGameContext()
   const orderedGames = [...gamesStats].sort((a, b) => b.score - a.score)
 
   return (

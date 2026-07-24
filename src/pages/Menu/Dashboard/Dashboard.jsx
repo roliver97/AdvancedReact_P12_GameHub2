@@ -1,9 +1,11 @@
 import React from 'react'
 import './Dashboard.css'
+import { useGameContext } from '../../../hooks/useGameContext'
 import { useUserContext } from '../../../hooks/useUserContext'
 
 const Dashboard = () => {
-  const { playerInfo, gamesStats, recents } = useUserContext()
+  const { playerInfo } = useUserContext()
+  const { gamesStats, recents } = useGameContext()
   const totalGamesPlayed = gamesStats.reduce(
     (acc, game) => acc + game.played,
     0

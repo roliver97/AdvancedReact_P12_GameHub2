@@ -6,12 +6,12 @@ import useTicTacToe from '../../../hooks/useTicTacToe'
 import ScoreBoard from '../../../components/GameBoard/ScoreBoard/ScoreBoard'
 import StatusBanner from '../../../components/GameBoard/StatusBanner/StatusBanner'
 import TicTacToeGrid from './TicTacToeGrid/TicTacToeGrid'
-import { useUserContext } from '../../../hooks/useUserContext'
+import { useGameContext } from '../../../hooks/useGameContext'
 import GameMenu from '../../../components/GameBoard/GameMenu/GameMenu'
 
 const TicTacToe = () => {
   const gameData = GAMES_DATA.tictactoe
-  const { gameMode, gameDifficulty, changeGameMode } = useUserContext()
+  const { gameMode, gameDifficulty, changeGameMode } = useGameContext()
   const {
     cells,
     currentPlayer,

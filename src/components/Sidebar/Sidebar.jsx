@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 import './Sidebar.css'
-import { useUserContext } from '../../hooks/useUserContext'
+import { useGameContext } from '../../hooks/useGameContext'
 import { NavLink, useLocation, useNavigate } from 'react-router-dom'
+import { useUserContext } from '../../hooks/useUserContext'
 
 const Sidebar = ({ isOpen, toggleSidebar }) => {
-  const { playerInfo, navigateToGame, activeGame } = useUserContext()
+  const { playerInfo } = useUserContext()
+  const { navigateToGame, activeGame } = useGameContext()
   const [isSlowTransition, setIsSlowTransition] = useState(false)
   const [loadingGameAnimation, setLoadingGameAnimation] = useState(null)
   console.log('Soy Sidebar y me renderizo', `MI JUEGO ACTIVO ES ${activeGame}`)

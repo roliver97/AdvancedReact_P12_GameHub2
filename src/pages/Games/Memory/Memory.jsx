@@ -2,7 +2,7 @@ import React from 'react'
 import './Memory.css'
 import GameBoard from '../../../components/GameBoard/GameBoard'
 import { GAMES_DATA } from '../../../constants/gamesData'
-import { useUserContext } from '../../../hooks/useUserContext'
+import { useGameContext } from '../../../hooks/useGameContext'
 import GameMenu from '../../../components/GameBoard/GameMenu/GameMenu'
 import ScoreBoard from '../../../components/GameBoard/ScoreBoard/ScoreBoard'
 import MemoryGrid from './MemoryGrid/MemoryGrid'
@@ -25,7 +25,7 @@ const Memory = () => {
     TIMER_BY_DIFFICULTY
   } = useMemory()
   const { gameMode, gameDifficulty, gamesStats, resetBestTime } =
-    useUserContext()
+    useGameContext()
 
   console.log(
     'GameMode:',

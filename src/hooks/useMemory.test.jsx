@@ -5,8 +5,8 @@ import useMemory from './useMemory'
 let mockDifficulty = 'pending'
 let mockGameMode = 'pending'
 
-vi.mock('./useUserContext', () => ({
-  useUserContext: () => ({
+vi.mock('./useGameContext', () => ({
+  useGameContext: () => ({
     gameDifficulty: mockDifficulty,
     gameMode: mockGameMode
   })
