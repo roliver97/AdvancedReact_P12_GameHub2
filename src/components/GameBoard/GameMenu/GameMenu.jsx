@@ -3,6 +3,8 @@ import './GameMenu.css'
 import { useGameContext } from '../../../hooks/useGameContext'
 
 const GameMenu = ({ gameDifficulty, gameData }) => {
+  console.log('RENDER <GameMenu/>')
+
   const { selectGameMode, selectGameDifficulty } = useGameContext()
 
   return (

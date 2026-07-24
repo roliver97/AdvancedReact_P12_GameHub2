@@ -12,9 +12,10 @@ import TicTacToe from './pages/Games/TicTacToe/TicTacToe'
 import Memory from './pages/Games/Memory/Memory'
 
 const App = () => {
+  console.log('RENDER APP <App/>')
+
   const { playerInfo } = useUserContext()
   const [isSidebarOpen, setIsSidebarOpen] = useState(true)
-  console.log('Soy App y me renderizo')
 
   if (!playerInfo.nickname) return <Welcome />
 

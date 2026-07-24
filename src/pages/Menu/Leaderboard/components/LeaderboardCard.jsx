@@ -6,6 +6,8 @@ const LeaderboardCard = ({
   lastGameDate,
   leaderboardPosition
 }) => {
+  console.log('RENDER <LeaderboardCard/>')
+
   return (
     <div className='leaderboard-card'>
       <div className='leaderboard-card-info'>

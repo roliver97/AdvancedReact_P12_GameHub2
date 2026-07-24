@@ -2,6 +2,8 @@ import React, { useEffect, useRef, useState } from 'react'
 import { formatTime } from '../../../utils/formatTime'
 
 const Timer = ({ initialTime, isGameActive, onTimeOut }) => {
+  console.log('RENDER <Timer/>')
+
   const [seconds, setSeconds] = useState(initialTime)
   const secondsRef = useRef(seconds)
   const onTimeOutRef = useRef(onTimeOut)

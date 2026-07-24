@@ -4,6 +4,7 @@ import { useGameContext } from '../../../hooks/useGameContext'
 import { useUserContext } from '../../../hooks/useUserContext'
 
 const Dashboard = () => {
+  console.log('RENDER PAGE <Dashboard/>')
   const { playerInfo } = useUserContext()
   const { gamesStats, recents } = useGameContext()
   const totalGamesPlayed = gamesStats.reduce(

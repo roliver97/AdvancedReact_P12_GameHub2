@@ -3,6 +3,8 @@ import './Welcome.css'
 import { useUserContext } from '../../hooks/useUserContext'
 
 const Welcome = () => {
+  console.log('RENDER PAGE <Welcome/>')
+
   const { setPlayerInfo } = useUserContext()
   const inputRef = useRef(null)
   const [showSplash, setShowSplash] = useState(true)
@@ -24,8 +26,6 @@ const Welcome = () => {
       }))
     }
   }
-
-  console.log('Soy Welcome y me renderizo')
 
   if (showSplash) {
     return (

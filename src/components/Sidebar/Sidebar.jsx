@@ -5,11 +5,12 @@ import { NavLink, useLocation, useNavigate } from 'react-router-dom'
 import { useUserContext } from '../../hooks/useUserContext'
 
 const Sidebar = ({ isOpen, toggleSidebar }) => {
+  console.log('RENDER <Sidebar/>')
+
   const { playerInfo } = useUserContext()
-  const { navigateToGame, activeGame } = useGameContext()
+  const { navigateToGame } = useGameContext()
   const [isSlowTransition, setIsSlowTransition] = useState(false)
   const [loadingGameAnimation, setLoadingGameAnimation] = useState(null)
-  console.log('Soy Sidebar y me renderizo', `MI JUEGO ACTIVO ES ${activeGame}`)
 
   const navigate = useNavigate()
   const location = useLocation()

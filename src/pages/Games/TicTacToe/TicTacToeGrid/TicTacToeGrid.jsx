@@ -6,6 +6,8 @@ const TicTacToeGrid = ({
   onCellClick,
   isFieldsDisabled
 }) => {
+  console.log('RENDER <TicTacToeGrid/>')
+
   return (
     <div className={`tictactoe-grid current-${currentPlayer.toLowerCase()}`}>
       {cells.map((value, index) => (

@@ -1,13 +1,30 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import './Leaderboard.css'
 import { useGameContext } from '../../../hooks/useGameContext'
 import LeaderboardCard from './components/LeaderboardCard'
 import { useUserContext } from '../../../hooks/useUserContext'
 
 const Leaderboard = () => {
+  console.log('RENDER PAGE <Leaderboard/>')
   const { playerInfo } = useUserContext()
   const { gamesStats, recents } = useGameContext()
-  const orderedGames = [...gamesStats].sort((a, b) => b.score - a.score)
+
+  const leaderBoardData = useMemo(() => {
+    return [...gamesStats]
+      .sort((a, b) => b.score - a.score)
+      .map((game, index) => {
+        const lastGame = recents.find(
+          (recentgame) => recentgame.name === game.name
+        )
+        return {
+          ...game,
+          position:
+            index +
+            1 /* sin el +1 index sería 0,1,2, pero para las cards queremos 1,2,3 */,
+          lastGameDate: lastGame ? lastGame.date : 'Never played'
+        }
+      })
+  }, [gamesStats, recents])
 
   return (
     <section className='leaderboard main-child custom-scrollbar'>
@@ -28,21 +45,14 @@ const Leaderboard = () => {
         </div>
 
         <div className='leaderboard-grid-cards'>
-          {orderedGames.map((game, index) => {
-            const lastGame = recents.find(
-              (recentgame) => recentgame.name === game.name
-            )
-            const lastGameDate = lastGame ? lastGame.date : 'Never played'
-
+          {leaderBoardData.map((gameData) => {
             return (
               <LeaderboardCard
                 nickname={playerInfo.nickname}
-                key={game.id}
-                game={game}
-                leaderboardPosition={
-                  index + 1
-                } /* sin el +1 index sería 0,1,2, pero para las cards queremos 1,2,3 */
-                lastGameDate={lastGameDate}
+                key={gameData.id}
+                game={gameData}
+                leaderboardPosition={gameData.position}
+                lastGameDate={gameData.lastGameDate}
               />
             )
           })}

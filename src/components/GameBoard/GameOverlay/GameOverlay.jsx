@@ -7,6 +7,8 @@ const OVERLAY_TITLES = {
 }
 
 const GameOverlay = ({ onReset, gameOverStatus }) => {
+  console.log('RENDER <GameOverlay/>')
+
   return (
     <div className={`game-over-overlay modal-overlay ${gameOverStatus}`}>
       <div className={`modal-content`}>

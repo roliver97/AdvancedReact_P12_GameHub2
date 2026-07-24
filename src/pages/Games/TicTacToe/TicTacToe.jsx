@@ -10,6 +10,8 @@ import { useGameContext } from '../../../hooks/useGameContext'
 import GameMenu from '../../../components/GameBoard/GameMenu/GameMenu'
 
 const TicTacToe = () => {
+  console.log('RENDER PAGE <TicTacToe/>')
+
   const gameData = GAMES_DATA.tictactoe
   const { gameMode, gameDifficulty, changeGameMode } = useGameContext()
   const {

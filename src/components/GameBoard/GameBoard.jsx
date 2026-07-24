@@ -8,6 +8,8 @@ const GameBoard = ({
   children,
   onChangeMode
 }) => {
+  console.log('RENDER <GameBoard/>')
+
   // onChangeMode como prop opcional, solo para juegos que lo requieran
   const [isModalOpen, setIsModalOpen] = useState(false)
 

@@ -12,6 +12,8 @@ import Timer from '../../../components/GameBoard/Timer/Timer'
 import { formatTime } from '../../../utils/formatTime'
 
 const Memory = () => {
+  console.log('RENDER PAGE <Memory/>')
+
   const gameData = GAMES_DATA.memory
   const {
     cards,
@@ -26,15 +28,6 @@ const Memory = () => {
   } = useMemory()
   const { gameMode, gameDifficulty, gamesStats, resetBestTime } =
     useGameContext()
-
-  console.log(
-    'GameMode:',
-    gameMode,
-    ' and GameDifficulty:',
-    gameDifficulty,
-    ' and cards number are:',
-    cards
-  )
 
   const initialTime = TIMER_BY_DIFFICULTY[gameDifficulty] || 0
   const memoryStats = gamesStats.find((game) => game.id === 'memory')

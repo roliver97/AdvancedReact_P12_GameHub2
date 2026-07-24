@@ -4,6 +4,8 @@ import { useGameContext } from '../../../hooks/useGameContext'
 import { useUserContext } from '../../../hooks/useUserContext'
 
 const Profile = () => {
+  console.log('RENDER PAGE <Profile/>')
+
   const { playerInfo } = useUserContext()
   const { gamesStats } = useGameContext()
 

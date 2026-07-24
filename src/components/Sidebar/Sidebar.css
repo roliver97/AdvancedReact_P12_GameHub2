@@ -6,6 +6,7 @@
   background-color: var(--gh-bg-sidebar);
   width: 350px;
   padding: var(--gh-space-l) var(--gh-space-xl);
+  padding-right: var(--gh-space-xxl);
   justify-content: space-between;
   align-items: center;
   box-shadow:

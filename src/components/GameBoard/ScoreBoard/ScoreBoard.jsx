@@ -2,6 +2,8 @@ import React from 'react'
 import './ScoreBoard.css'
 
 const ScoreBoard = ({ data }) => {
+  console.log('RENDER <ScoreBoard/>')
+
   return (
     <div className='game-score-board'>
       {data.map((card, index) => (

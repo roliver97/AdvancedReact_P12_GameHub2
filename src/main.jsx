@@ -19,3 +19,4 @@ createRoot(document.getElementById('app')).render(
 )
 
 //! En este caso <App/> actua como la prop {children} que espera tanto UserProvider como GameProvider. Al tratarse de children, significa que la referencia de App ha sido creada fuera de los componentes <UserProvider> y <GameProvider> (es decir, ha sido creada dentro de main.js), por lo que la renderización de estos no provocará la re-renderización de <App/>. Y eso se aplica a cualquier componente que anidemos dentro de los Provider (o cualquiera que use {children}). Lo único que provocará una re-renderización de un componente originada por un Provider será si dicho componente usa el hook useUserContext() o useGameContext().
+//? Si algun estado de UserProvider se actualiza, GameProvider (o cualquiera de los posibles componentes "hijos" que pudiese tener UserProvider) no se re-renderizará, igual que pasa con App, ya que aunque tambien se trate de un Provider, para UserProvider sigue siendo {children}.
